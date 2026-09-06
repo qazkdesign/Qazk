@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Diamond Gradient -->
+    <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFBE3B"/>
+      <stop offset="50%" stop-color="#FFA020"/>
+      <stop offset="100%" stop-color="#FF7020"/>
+    </linearGradient>
+
+    <!-- Text Gradient & Depth -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFA800"/>
+      <stop offset="100%" stop-color="#FF8000"/>
+    </linearGradient>
+
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#E65100" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Central Rotated Diamond (Rhombus) -->
+  <g transform="translate(300, 275) rotate(45)">
+    <rect x="-140" y="-140" width="280" height="280" rx="14" fill="url(#diamondGrad)" stroke="#E84A27" stroke-width="2.5" />
+  </g>
+
+  <!-- The Stylized Wordmark "Qazk" -->
+  <g id="qazk-wordmark" filter="url(#subtleShadow)">
+    
+    <!-- Q - Loop and Swooping Tail -->
+    <path d="M 125,320 
+             C 95,320 70,290 70,245 
+             C 70,200 95,170 135,170 
+             C 175,170 200,200 200,245 
+             C 200,270 190,295 170,312 
+             C 200,325 260,335 305,315 
+             C 318,309 320,327 305,335 
+             C 250,365 175,355 138,326 
+             C 134,324 129,322 125,320 Z
+             M 135,200 
+             C 115,200 102,220 102,245 
+             C 102,270 115,290 135,290 
+             C 155,290 168,270 168,245 
+             C 168,220 155,200 135,200 Z" 
+          fill="url(#textGrad)" stroke="#E65100" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- 'a' - Rounded friendly bubble lowercase -->
+    <path d="M 230,225
+             C 255,215 285,220 300,235
+             C 315,250 318,270 318,300
+             L 318,320
+             C 318,335 328,338 332,328
+             L 332,335
+             C 328,348 308,350 302,338
+             C 290,348 272,352 252,350
+             C 225,348 208,332 208,308
+             C 208,280 230,268 270,265
+             L 300,263
+             L 300,252
+             C 300,238 290,232 272,232
+             C 255,232 240,238 230,248
+             Z
+             M 300,280
+             L 272,282
+             C 248,284 238,292 238,306
+             C 238,318 248,328 265,328
+             C 285,328 300,314 300,296
+             Z"
+          fill="url(#textGrad)" stroke="#E65100" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- 'z' - Rounded flowing dynamic lowercase -->
+    <path d="M 345,230
+             L 420,230
+             C 432,230 435,242 422,252
+             L 362,312
+             L 425,312
+             C 436,312 438,328 428,334
+             C 418,340 345,340 340,340
+             C 330,340 326,328 336,318
+             L 398,258
+             L 345,258
+             C 334,258 334,230 345,230
+             Z"
+          fill="url(#textGrad)" stroke="#E65100" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- 'k' - Distinctive bubbly tall stem with knob and arms -->
+    <path d="M 462,170
+             C 475,170 482,180 482,192
+             L 482,238
+             C 498,228 518,220 535,228
+             C 550,236 552,252 540,262
+             L 508,288
+             L 550,332
+             C 560,342 550,355 538,352
+             C 528,350 495,308 482,295
+             L 482,332
+             C 482,345 470,352 458,350
+             C 448,348 442,338 442,328
+             L 442,192
+             C 442,180 450,170 462,170
+             Z"
+          fill="url(#textGrad)" stroke="#E65100" stroke-width="3" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Subtitle below bottom diamond point: Abdulrahman Abu-Salama -->
+  <text x="300" y="492" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="21" font-weight="600" fill="#D32424" letter-spacing="0.5">
+    Abdulrahman
+  </text>
+  <text x="300" y="516" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="21" font-weight="600" fill="#D32424" letter-spacing="0.5">
+    Abu-Salama
+  </text>
+</svg>

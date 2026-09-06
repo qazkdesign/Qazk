@@ -1,0 +1,6 @@
+{
+  "name": "Qazk Studio",
+  "description": "Creative graphic design studio portfolio, service booking, and bilingual showcase for Qazk.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,2282 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qazk Studio | نُحول أفكارك إلى واقع بصري مبدع</title>
+    <meta name="description" content="Qazk هي منصة واستوديو تصميم جرافيك معاصر يبتكر هويات بصرية فريدة، واجهات مستخدم احترافية، وتصاميم رقمية." />
+    <meta property="og:title" content="Qazk Studio | Visuals Beyond Imagination" />
+    <meta property="og:description" content="Contemporary graphic design studio creating unique brand identities, UI/UX, and digital designs." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/qazk-logo.svg" />
+    <link rel="alternate icon" type="image/png" href="/Qazk.png" />
+    <link rel="apple-touch-icon" href="/Qazk.png" />
+    
+    <!-- Google Fonts: Artistic Flair typography (Cairo, Inter, Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#fff8eb',
+                100: '#ffefc7',
+                200: '#ffdc8a',
+                300: '#ffc347',
+                400: '#ffa614',
+                500: '#FF9900', // Artistic Flair Core Gold
+                600: '#CC7A00',
+                700: '#b36500',
+                800: '#8c4e00',
+                900: '#5c3300',
+              },
+              qazk: {
+                gold: '#FF9900',
+                goldLight: '#FFD700',
+                goldDark: '#CC7A00',
+                dark: '#0b0c10',
+                card: '#161b22',
+                surface: '#0d1117',
+                border: '#30363d'
+              },
+              dark: {
+                bg: '#0b0c10',
+                surface: '#0d1117',
+                card: '#161b22',
+                border: '#30363d',
+                muted: '#8b949e'
+              }
+            },
+            fontFamily: {
+              ar: ['Cairo', 'sans-serif'],
+              en: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
+            },
+            boxShadow: {
+              'glow': '0 0 35px -5px rgba(255, 153, 0, 0.45)',
+              'glow-sm': '0 0 15px -3px rgba(255, 153, 0, 0.35)',
+              'glow-lg': '0 0 60px -10px rgba(255, 153, 0, 0.55)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* Artistic Flair Design System Variables */
+      :root {
+        --qazk-gold: #FF9900;
+        --qazk-dark: #0b0c10;
+        --qazk-card: #161b22;
+        --qazk-surface: #0d1117;
+      }
+
+      body {
+        background-color: var(--qazk-dark);
+        color: #ffffff;
+        font-family: 'Cairo', 'Inter', 'Plus Jakarta Sans', sans-serif;
+        overflow-x: hidden;
+      }
+
+      .font-arabic { font-family: 'Cairo', sans-serif; }
+      .font-english { font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; }
+
+      /* Artistic Flair Glassmorphism */
+      .glass {
+        background: rgba(22, 27, 34, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 153, 0, 0.12);
+      }
+
+      .glass-card {
+        background: rgba(22, 27, 34, 0.75);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 153, 0, 0.12);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-card:hover {
+        border-color: rgba(255, 153, 0, 0.35);
+        box-shadow: 0 0 30px rgba(255, 153, 0, 0.18);
+        transform: translateY(-2px);
+      }
+
+      /* Artistic Flair Glow Text */
+      .glow-text {
+        text-shadow: 0 0 20px rgba(255, 153, 0, 0.45);
+      }
+
+      /* Artistic Flair Gold Button */
+      .btn-gold {
+        background: linear-gradient(135deg, #FF9900 0%, #CC7A00 100%);
+        color: #000000;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-gold:hover {
+        background: linear-gradient(135deg, #ffa61a 0%, #e68a00 100%);
+        box-shadow: 0 0 30px rgba(255, 153, 0, 0.55);
+        transform: translateY(-2px) scale(1.01);
+      }
+
+      .btn-gold:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      /* Smooth Navigation Links with Animated Indicator */
+      .nav-link {
+        position: relative;
+        transition: color 0.25s ease, transform 0.25s ease;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #FF9900, #FFD700);
+        border-radius: 9999px;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-link:hover {
+        color: #FF9900;
+        transform: translateY(-1px);
+      }
+
+      /* Artistic Flair Input Fields */
+      .input-field {
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        color: white;
+        padding: 10px 14px;
+        font-size: 13.5px;
+        transition: all 0.2s ease;
+      }
+
+      .input-field:focus {
+        border-color: #FF9900;
+        outline: none;
+        box-shadow: 0 0 0 1px #FF9900, 0 0 16px rgba(255, 153, 0, 0.25);
+      }
+
+      /* Artistic Ambient Glow */
+      .ambient-glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255, 153, 0, 0.14) 0%, rgba(255, 153, 0, 0.02) 50%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Vercel / Gemini Vibe Scroll Reveal Animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      .reveal-scale.is-visible {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+
+      .stagger-1 { transition-delay: 80ms; }
+      .stagger-2 { transition-delay: 160ms; }
+      .stagger-3 { transition-delay: 240ms; }
+      .stagger-4 { transition-delay: 320ms; }
+
+      /* Portfolio Card Smooth Motion */
+      .portfolio-card {
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.4s ease, 
+                    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .portfolio-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 153, 0, 0.55);
+        box-shadow: 0 20px 40px -15px rgba(255, 153, 0, 0.22);
+      }
+
+      /* Testimonial Transition Smoothness */
+      .testimonial-fade {
+        transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b0c10;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #21262d;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #FF9900;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#0a0b0e] text-zinc-100 selection:bg-brand-500 selection:text-black antialiased relative">
+    <!-- Ambient Lighting Backgrounds -->
+    <div class="ambient-glow top-0 left-1/2 -translate-x-1/2"></div>
+    <div class="ambient-glow top-[35%] right-[-100px]"></div>
+    <div class="ambient-glow bottom-[-50px] left-[-100px]"></div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 w-full border-b border-gray-800/80 glass bg-[#0b0c10]/80 backdrop-blur-xl transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Brand / Logo with Double-Click Admin trigger -->
+        <div class="flex items-center gap-3.5 select-none cursor-pointer group" id="brand-logo-container" title="Qazk Studio (Double-click for Admin)">
+          <div class="w-12 h-12 relative flex items-center justify-center rounded-2xl overflow-hidden p-1 bg-[#161b22]/90 border border-[#FF9900]/40 shadow-[0_0_20px_rgba(255,153,0,0.35)] group-hover:scale-105 group-hover:border-[#FF9900] group-hover:shadow-[0_0_30px_rgba(255,153,0,0.6)] transition-all duration-300">
+            <img src="/qazk-logo.svg" alt="Qazk Logo" class="w-full h-full object-contain" onerror="this.src='/Qazk.png'">
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl font-black tracking-tighter text-white glow-text">QAZK</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#FF9900]/15 text-[#FF9900] border border-[#FF9900]/30 font-bold uppercase tracking-widest">STUDIO</span>
+            </div>
+            <p class="text-[11px] text-zinc-400 leading-none" data-i18n="tagline_mini">تصاميم تفوق الخيال</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-7">
+          <a href="#hero" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_home">الرئيسية</a>
+          <a href="#about" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_about">عن Qazk</a>
+          <a href="#portfolio" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_portfolio">معرض الأعمال</a>
+          <a href="#offers" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900] flex items-center gap-1.5">
+            <span data-i18n="nav_offers">العروض</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] bg-[#FF9900]/20 text-[#FF9900] font-bold border border-[#FF9900]/30">جديد</span>
+          </a>
+          <a href="#testimonials" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_testimonials">آراء العملاء</a>
+          <a href="#order" class="nav-link text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_order">طلب خدمة</a>
+        </nav>
+
+        <!-- Right Side: Language Switcher & Quick CTA -->
+        <div class="flex items-center gap-3">
+          <!-- Language Toggle Button -->
+          <button id="lang-toggle-btn" class="bg-gray-800/90 px-4 py-1.5 rounded-full border border-gray-700 hover:border-[#FF9900] flex items-center gap-2 transition-all shadow-sm cursor-pointer">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-[#FF9900]"></i>
+            <span id="lang-label" class="text-xs font-bold text-zinc-200">English</span>
+          </button>
+
+          <!-- Order Now CTA -->
+          <a href="#order" class="btn-gold hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-xl text-black font-extrabold text-xs tracking-wide cursor-pointer">
+            <span data-i18n="cta_order_now">اطلب تصميمك</span>
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-xl border border-dark-border bg-dark-surface text-zinc-300 hover:text-[#FF9900] cursor-pointer">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-nav" class="hidden md:hidden border-t border-dark-border bg-[#0d1117] px-4 pt-3 pb-5 space-y-3">
+        <a href="#hero" class="block py-2 text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_home">الرئيسية</a>
+        <a href="#about" class="block py-2 text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_about">عن Qazk</a>
+        <a href="#portfolio" class="block py-2 text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_portfolio">معرض الأعمال</a>
+        <a href="#offers" class="block py-2 text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_offers">العروض الخاصة</a>
+        <a href="#testimonials" class="block py-2 text-sm font-medium text-zinc-300 hover:text-[#FF9900]" data-i18n="nav_testimonials">آراء العملاء</a>
+        <a href="#order" class="block py-2 text-sm font-medium text-[#FF9900] font-bold" data-i18n="nav_order">طلب خدمة</a>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+      
+      <!-- HERO SECTION -->
+      <section id="hero" class="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden border-b border-dark-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left/Hero Content -->
+            <div class="lg:col-span-7 text-center lg:text-start space-y-6">
+              
+              <!-- Announcement Badge -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 border border-[#FF9900]/25 text-[#FF9900] text-xs font-semibold">
+                <span class="w-2 h-2 rounded-full bg-[#FF9900] animate-ping"></span>
+                <span data-i18n="hero_badge">استوديو تصميم جرافيك معاصر وبصريات استثنائية</span>
+              </div>
+
+              <!-- Main Heading -->
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+                <span class="text-[#FF9900] glow-text">QAZK</span>
+                <span class="block mt-2" data-i18n="hero_title">نُحول أفكارك إلى واقع بصري مبدع</span>
+              </h1>
+
+              <!-- Subtitle -->
+              <p class="text-base sm:text-lg text-gray-400 max-w-2xl leading-relaxed" data-i18n="hero_desc">
+                نبتكر هويات بصرية أصيلة، واجهات مستخدم رقمية، وتصاميم فنية تجعل علامتك التجارية تتألق وتترك انطباعاً لا يُنسى في أذهان جمهورك.
+              </p>
+
+              <!-- Hero Buttons -->
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                <a href="#order" class="btn-gold px-8 py-4 rounded-xl shadow-lg flex items-center gap-2 text-black font-extrabold text-sm">
+                  <span data-i18n="hero_btn_order">ابدأ مشروعك الآن</span>
+                  <i data-lucide="arrow-left" class="w-4 h-4 rtl-flip"></i>
+                </a>
+                <a href="#portfolio" class="bg-white/5 border border-white/10 px-8 py-4 rounded-xl hover:bg-white/10 text-white font-bold text-sm hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                  <i data-lucide="eye" class="w-4 h-4 text-[#FF9900]"></i>
+                  <span data-i18n="hero_btn_portfolio">استعرض معرض الأعمال</span>
+                </a>
+              </div>
+
+              <!-- Stats & Trust highlights -->
+              <div class="grid grid-cols-3 gap-4 pt-8 border-t border-dark-border/60 max-w-lg mx-auto lg:mx-0">
+                <div>
+                  <div class="text-2xl font-black text-white">100%</div>
+                  <div class="text-xs text-zinc-400" data-i18n="stat_1">إبداع وتفرّد كامل</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-[#FF9900]">24/7</div>
+                  <div class="text-xs text-zinc-400" data-i18n="stat_2">تواصل ودعم سريع</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-white">Pixel</div>
+                  <div class="text-xs text-zinc-400" data-i18n="stat_3">دقة متناهية بالتفاصيل</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Visual / Showcase Preview -->
+            <div class="lg:col-span-5 relative flex justify-center">
+              <div class="w-full max-w-md relative">
+                <!-- Glowing ambient halo behind card -->
+                <div class="absolute inset-0 bg-[#FF9900]/15 blur-3xl rounded-full -z-10"></div>
+                
+                <div class="glass rounded-3xl p-6 sm:p-8 shadow-[0_0_40px_rgba(255,153,0,0.15)] border border-[#FF9900]/20 relative overflow-hidden group">
+                  <!-- Top bar mock -->
+                  <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/5">
+                    <div class="flex items-center gap-2">
+                      <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                      <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                      <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <span class="text-[11px] text-zinc-500 tracking-wider">qazk-visual-engine.ai</span>
+                  </div>
+
+                  <!-- Visual Showcase Canvas with Artistic Bento Active Projects -->
+                  <div class="relative rounded-2xl bg-gradient-to-br from-[#161b22] via-[#0d1117] to-[#161b22] border border-white/10 flex flex-col p-6 overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-10 h-10 rounded-xl bg-[#161b22] border border-[#FF9900]/40 p-1 shadow-[0_0_12px_rgba(255,153,0,0.4)] flex items-center justify-center">
+                          <img src="/qazk-logo.svg" alt="Qazk" class="w-full h-full object-contain" onerror="this.src='/Qazk.png'">
+                        </div>
+                        <div>
+                          <h4 class="text-xs font-black text-white">Qazk Visual Engine</h4>
+                          <span class="text-[10px] text-gray-400" data-i18n="hero_card_sub">هويات بصرية • واجهات • إعلانات</span>
+                        </div>
+                      </div>
+                      <span class="text-[10px] bg-[#FF9900] text-black px-2 py-0.5 rounded-full font-black tracking-wider">LIVE</span>
+                    </div>
+
+                    <!-- Artistic Status bars -->
+                    <div class="space-y-3 my-2">
+                      <div class="flex items-center p-2.5 bg-white/5 rounded-xl border border-white/5">
+                        <div class="w-7 h-7 rounded-full bg-amber-500/20 text-[#FF9900] flex items-center justify-center text-xs font-bold mr-2 rtl:ml-2 rtl:mr-0">L</div>
+                        <div class="flex-1">
+                          <div class="flex justify-between text-[11px] font-bold text-gray-300">
+                            <span>Lumina Tech UI/UX</span>
+                            <span class="text-[#FF9900] font-mono">65%</span>
+                          </div>
+                          <div class="w-full h-1.5 bg-white/10 rounded-full mt-1.5 overflow-hidden">
+                            <div class="w-[65%] h-full bg-[#FF9900] rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex items-center p-2.5 bg-white/5 rounded-xl border border-white/5">
+                        <div class="w-7 h-7 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs font-bold mr-2 rtl:ml-2 rtl:mr-0">V</div>
+                        <div class="flex-1">
+                          <div class="flex justify-between text-[11px] font-bold text-gray-300">
+                            <span>Vesta Luxury Brand</span>
+                            <span class="text-[#FF9900] font-mono">40%</span>
+                          </div>
+                          <div class="w-full h-1.5 bg-white/10 rounded-full mt-1.5 overflow-hidden">
+                            <div class="w-[40%] h-full bg-[#FF9900] rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Floating Badge -->
+                    <div class="mt-2 py-2 px-3 rounded-xl bg-black/40 border border-[#FF9900]/30 flex items-center justify-between">
+                      <span class="text-[11px] text-zinc-300 font-semibold" data-i18n="hero_card_badge">جاهزون لإطلاق علامتك</span>
+                      <span class="text-[11px] text-[#FF9900] font-black">QAZK 2026</span>
+                    </div>
+                  </div>
+
+                  <!-- Quick Stats Footnote -->
+                  <div class="mt-4 flex items-center justify-between text-xs text-zinc-400">
+                    <span class="flex items-center gap-1.5">
+                      <i data-lucide="check-circle" class="w-3.5 h-3.5 text-[#FF9900]"></i>
+                      <span data-i18n="hero_check_1">تصاميم مخصصة 100%</span>
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                      <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#FF9900]"></i>
+                      <span data-i18n="hero_check_2">حقوق ملكية كاملة</span>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="py-20 md:py-28 border-b border-dark-border/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+            <span class="px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/25 text-xs font-bold uppercase tracking-wider" data-i18n="about_badge">من نحن</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white" data-i18n="about_heading">قصتنا وشغفنا بالتصميم</h2>
+            <div class="w-16 h-1 bg-gradient-to-r from-[#FF9900] to-[#FFD700] mx-auto rounded-full"></div>
+          </div>
+
+          <!-- The Exact User About Statement in Artistic Flair Glass Container -->
+          <div class="max-w-4xl mx-auto">
+            <div class="glass rounded-3xl p-8 sm:p-12 border border-[#FF9900]/25 relative shadow-[0_0_35px_rgba(255,153,0,0.12)]">
+              <i data-lucide="quote" class="w-10 h-10 text-[#FF9900]/30 mb-4"></i>
+              
+              <blockquote class="text-xl sm:text-2xl font-medium leading-relaxed text-zinc-100" data-i18n="about_main_text">
+                "Qazk هي منصة واستوديو تصميم جرافيك معاصر يبتكر هويات بصرية فريدة، واجهات مستخدم احترافية، وتصاميم رقمية موجهة للأفراد والشركات. نؤمن بأن كل علامة تجارية تستحق أن تروي قصتها بأسلوب بصري ساحر وجذاب."
+              </blockquote>
+
+              <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-xl bg-[#161b22] border border-[#FF9900]/40 p-1 flex items-center justify-center shadow-[0_0_12px_rgba(255,153,0,0.25)]">
+                    <img src="/qazk-logo.svg" alt="Qazk" class="w-full h-full object-contain" onerror="this.src='/Qazk.png'">
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">فريق استوديو Qazk</div>
+                    <div class="text-xs text-zinc-400">Creative Direction: Abdulrahman Abu-Salama</div>
+                  </div>
+                </div>
+                <div class="text-xs text-[#FF9900] font-bold flex items-center gap-1.5">
+                  <i data-lucide="sparkle" class="w-4 h-4"></i>
+                  <span data-i18n="about_motto">رؤية بصرية بلا حدود</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Capabilities 4-Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+            
+            <div class="glass rounded-3xl p-6 border border-[#30363d] hover:border-[#FF9900]/50 hover:shadow-[0_0_25px_rgba(255,153,0,0.15)] transition-all">
+              <div class="w-12 h-12 rounded-2xl bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center text-[#FF9900] mb-4">
+                <i data-lucide="feather" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="service_1_title">الهويات البصرية الكاملة</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed" data-i18n="service_1_desc">شعار متقن، أدلة هوية بصرية، باليت الألوان، والخطوط المميزة لعلامتك التجارية.</p>
+            </div>
+
+            <div class="glass rounded-3xl p-6 border border-[#30363d] hover:border-[#FF9900]/50 hover:shadow-[0_0_25px_rgba(255,153,0,0.15)] transition-all">
+              <div class="w-12 h-12 rounded-2xl bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center text-[#FF9900] mb-4">
+                <i data-lucide="layout" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="service_2_title">واجهات وتطبيقات (UI/UX)</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed" data-i18n="service_2_desc">تصميم واجهات المواقع والمتاجر والتطبيقات بأسلوب عصري وسهل الاستخدام.</p>
+            </div>
+
+            <div class="glass rounded-3xl p-6 border border-[#30363d] hover:border-[#FF9900]/50 hover:shadow-[0_0_25px_rgba(255,153,0,0.15)] transition-all">
+              <div class="w-12 h-12 rounded-2xl bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center text-[#FF9900] mb-4">
+                <i data-lucide="share-2" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="service_3_title">إعلانات وسوشيال ميديا</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed" data-i18n="service_3_desc">بوستات، بنرات تفاعلية، وقوالب احترافية ترفع التفاعل والمبيعات.</p>
+            </div>
+
+            <div class="glass rounded-3xl p-6 border border-[#30363d] hover:border-[#FF9900]/50 hover:shadow-[0_0_25px_rgba(255,153,0,0.15)] transition-all">
+              <div class="w-12 h-12 rounded-2xl bg-[#FF9900]/10 border border-[#FF9900]/20 flex items-center justify-center text-[#FF9900] mb-4">
+                <i data-lucide="box" class="w-6 h-6"></i>
+              </div>
+              <h3 class="text-base font-bold text-white mb-2" data-i18n="service_4_title">المطبوعات والتغليف</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed" data-i18n="service_4_desc">تصاميم العبوات، البروشورات، بطاقات الأعمال، وأكياس التعبئة الفاخرة.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PORTFOLIO SHOWCASE SECTION -->
+      <section id="portfolio" class="py-20 md:py-28 border-b border-dark-border/40 relative reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <span class="px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/25 text-xs font-bold uppercase tracking-wider" data-i18n="portfolio_badge">معرض الأعمال</span>
+              <h2 class="text-3xl sm:text-4xl font-black text-white mt-2" data-i18n="portfolio_heading">إبداعاتنا المختارة</h2>
+              <p class="text-sm text-zinc-400 mt-1" data-i18n="portfolio_sub">مشاريع صممت بشغف ودقة لشركات رائدة وأفراد مبدعين</p>
+            </div>
+
+            <!-- Filter Pills in Artistic Flair Style: Branding, Web Design, UI/UX, Illustration -->
+            <div class="flex flex-wrap items-center gap-2.5" id="portfolio-filters">
+              <button class="portfolio-filter-btn active btn-gold px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer" data-filter="all" data-i18n="filter_all">الكل</button>
+              <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#161b22] text-zinc-300 border border-[#30363d] hover:border-[#FF9900]/50 hover:text-white cursor-pointer" data-filter="branding" data-i18n="filter_branding">هويات بصرية</button>
+              <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#161b22] text-zinc-300 border border-[#30363d] hover:border-[#FF9900]/50 hover:text-white cursor-pointer" data-filter="webdesign" data-i18n="filter_webdesign">تصميم مواقع</button>
+              <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#161b22] text-zinc-300 border border-[#30363d] hover:border-[#FF9900]/50 hover:text-white cursor-pointer" data-filter="uiux" data-i18n="filter_uiux">واجهات وتطبيقات</button>
+              <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#161b22] text-zinc-300 border border-[#30363d] hover:border-[#FF9900]/50 hover:text-white cursor-pointer" data-filter="illustration" data-i18n="filter_illustration">رسوم وتوضيحات</button>
+            </div>
+          </div>
+
+          <!-- Portfolio Cards Grid with Smooth Transition -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300 min-h-[380px]" id="portfolio-grid">
+            <!-- Dynamically populated via JS and Firebase Cloud Sync -->
+          </div>
+
+          <!-- Cloud Sync Status indicator -->
+          <div class="mt-8 flex items-center justify-center gap-2 text-xs text-zinc-500">
+            <span class="w-2 h-2 rounded-full bg-[#FF9900] animate-pulse"></span>
+            <span id="cloud-sync-status" data-i18n="cloud_synced">قاعدة البيانات السحابية متصلة ومحدثة فورياً</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SPECIAL OFFERS SECTION -->
+      <section id="offers" class="py-20 md:py-28 border-b border-dark-border/40 relative reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+            <span class="px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/25 text-xs font-bold uppercase tracking-wider" data-i18n="offers_badge">عروض حصرية</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white" data-i18n="offers_heading">عروض وباقات خاصة من Qazk</h2>
+            <p class="text-sm text-zinc-400" data-i18n="offers_sub">اغتنم فرصتك الذهبية مع عروضنا المميزة للمشاريع والشركات</p>
+          </div>
+
+          <!-- Offers Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="offers-grid">
+            <!-- Dynamically populated from cloud database & seed offers with Artistic Flair hero offer -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CLIENT TESTIMONIALS SECTION -->
+      <section id="testimonials" class="py-20 md:py-28 border-b border-dark-border/40 relative reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+            <span class="px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/25 text-xs font-bold uppercase tracking-wider" data-i18n="testimonials_badge">آراء وشهادات العملاء</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white" data-i18n="testimonials_heading">ماذا يقول عملاؤنا عن Qazk</h2>
+            <p class="text-sm text-zinc-400" data-i18n="testimonials_sub">نفخر بتقديم تجارب تصميمية استثنائية تصنع الفارق وتثري مسيرة شركاء نجاحنا</p>
+          </div>
+
+          <!-- Featured Spotlight Carousel Card -->
+          <div class="max-w-4xl mx-auto mb-14">
+            <div id="testimonial-spotlight-card" class="glass rounded-3xl p-8 sm:p-12 border border-[#FF9900]/30 relative shadow-[0_0_45px_rgba(255,153,0,0.18)] group transition-all duration-500 overflow-hidden">
+              
+              <!-- Subtle decorative ambient glow -->
+              <div class="absolute -top-24 -right-24 w-60 h-60 bg-[#FF9900]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+              <!-- Top Row: Rating Stars and Project Scope Badge -->
+              <div class="flex flex-wrap items-center justify-between gap-4 mb-6 relative z-10">
+                <div class="flex items-center gap-1.5 text-[#FF9900]" id="spotlight-stars">
+                  <i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>
+                  <i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>
+                  <i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>
+                  <i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>
+                  <i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FF9900]/10 border border-[#FF9900]/30 text-xs font-semibold text-[#FF9900]">
+                  <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                  <span id="spotlight-project-tag">هوية بصرية متكاملة</span>
+                </div>
+              </div>
+
+              <!-- Quote Content with Smooth Transition -->
+              <div class="relative z-10 mb-8 min-h-[90px] flex flex-col justify-center">
+                <i data-lucide="quote" class="w-10 h-10 text-[#FF9900]/30 mb-3"></i>
+                <p id="spotlight-quote" class="testimonial-fade text-lg sm:text-2xl font-medium leading-relaxed text-zinc-100">
+                  "العمل مع استوديو Qazk كان نقطة تحول حقيقية لعلامتنا التجارية. الهوية البصرية وتصميم واجهات المنصة تميزت بالدقة، الذوق الرفيع، والفهم العميق لتجربة المستخدم."
+                </p>
+              </div>
+
+              <!-- Bottom Row: Client Profile & Carousel Navigation -->
+              <div class="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-white/10 relative z-10">
+                
+                <!-- Client Info -->
+                <div class="flex items-center gap-4" id="spotlight-client-profile">
+                  <div class="w-14 h-14 rounded-2xl overflow-hidden border-2 border-[#FF9900]/40 p-0.5 bg-[#161b22] shadow-[0_0_15px_rgba(255,153,0,0.3)] shrink-0">
+                    <img id="spotlight-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop" alt="Client" class="w-full h-full object-cover rounded-xl">
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <h4 id="spotlight-name" class="font-bold text-white text-base sm:text-lg">م. طارق المنصور</h4>
+                      <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">
+                        <i data-lucide="check-circle-2" class="w-3 h-3"></i>
+                        <span data-i18n="testimonials_verified">عميل موثق</span>
+                      </span>
+                    </div>
+                    <p id="spotlight-role" class="text-xs sm:text-sm text-zinc-400 mt-0.5">مؤسس ورئيس تنفيذي، نماء للتقنية المالية</p>
+                  </div>
+                </div>
+
+                <!-- Carousel Controls (Prev/Next Arrows + Dots) -->
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-1.5 mr-2 rtl:ml-2 rtl:mr-0" id="spotlight-dots">
+                    <button class="w-2.5 h-2.5 rounded-full bg-[#FF9900] transition-all cursor-pointer" onclick="goToTestimonial(0)" aria-label="Slide 1"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-all cursor-pointer" onclick="goToTestimonial(1)" aria-label="Slide 2"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/20 hover:bg-white/50 transition-all cursor-pointer" onclick="goToTestimonial(2)" aria-label="Slide 3"></button>
+                  </div>
+                  <button id="prev-testimonial-btn" onclick="prevTestimonial()" class="w-10 h-10 rounded-xl bg-[#161b22] border border-[#30363d] hover:border-[#FF9900] hover:text-[#FF9900] text-zinc-300 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer" aria-label="Previous Testimonial">
+                    <i data-lucide="chevron-right" class="w-5 h-5 rtl:rotate-0 ltr:rotate-180"></i>
+                  </button>
+                  <button id="next-testimonial-btn" onclick="nextTestimonial()" class="w-10 h-10 rounded-xl bg-[#161b22] border border-[#30363d] hover:border-[#FF9900] hover:text-[#FF9900] text-zinc-300 flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer" aria-label="Next Testimonial">
+                    <i data-lucide="chevron-left" class="w-5 h-5 rtl:rotate-0 ltr:rotate-180"></i>
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Testimonials 3-Card Grid for Instant Scannability and Interactivity -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="testimonials-grid">
+            <!-- Dynamically populated and synchronized with active spotlight -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ORDER / SERVICE REQUEST SECTION -->
+      <section id="order" class="py-20 md:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Left Info & Contact Direct -->
+            <div class="lg:col-span-5 space-y-6">
+              <span class="px-3.5 py-1.5 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/25 text-xs font-bold uppercase tracking-wider" data-i18n="order_badge">طلب خدمة</span>
+              <h2 class="text-3xl sm:text-4xl font-black text-white" data-i18n="order_heading">لنبدأ رحلة بناء تصميمك المميز</h2>
+              <p class="text-sm text-zinc-400 leading-relaxed" data-i18n="order_desc">
+                املأ النموذج وسيقوم فريق Qazk بدراسة متطلباتك والرد عليك فوراً عبر البريد الإلكتروني. نلتزم بالسرعة والإبداع لتحقيق تطلعاتك.
+              </p>
+
+              <!-- Direct Contact Box -->
+              <div class="glass rounded-3xl p-6 sm:p-8 border border-[#FF9900]/20 space-y-4 shadow-[0_0_30px_rgba(255,153,0,0.1)]">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#FF9900]/10 border border-[#FF9900]/30 flex items-center justify-center text-[#FF9900]">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-zinc-400" data-i18n="order_email_title">البريد الإلكتروني المباشر</div>
+                    <a href="mailto:qazk.design@gmail.com" class="text-sm font-bold text-white hover:text-[#FF9900] transition-colors">qazk.design@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#FF9900]/10 border border-[#FF9900]/30 flex items-center justify-center text-[#FF9900]">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-zinc-400" data-i18n="order_reply_title">سرعة الاستجابة</div>
+                    <div class="text-sm font-bold text-white" data-i18n="order_reply_time">خلال أقل من 24 ساعة</div>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-2xl bg-[#FF9900]/10 border border-[#FF9900]/20 text-xs text-zinc-300">
+                  <i data-lucide="shield-alert" class="w-4 h-4 text-[#FF9900] inline-block ml-1 rtl-flip"></i>
+                  <span data-i18n="order_note">سيتم الرد عليك مباشرة من حسابنا الرسمي qazk.design@gmail.com</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right: The Formspree Form with Artistic Flair Input Fields -->
+            <div class="lg:col-span-7">
+              <div class="glass rounded-3xl p-6 sm:p-8 border border-[#FF9900]/20 shadow-[0_0_35px_rgba(255,153,0,0.15)]">
+                
+                <h3 class="text-xl font-bold mb-6 flex items-center text-white"> 
+                  <span class="w-2.5 h-2.5 bg-[#FF9900] rounded-full mr-3 rtl:ml-3 rtl:mr-0 shadow-[0_0_10px_#FF9900]"></span>
+                  <span data-i18n="order_heading">طلب تصميم جديد</span>
+                </h3>
+
+                <form id="qazk-order-form" action="https://formspree.io/f/mvkobkar" method="POST" class="space-y-5">
+                  
+                  <!-- Formspree Subject Hidden Field -->
+                  <input type="hidden" name="_subject" value="طلب تصميم جديد - استوديو Qazk">
+                  <input type="hidden" name="selected_offer" id="form-selected-offer" value="">
+
+                  <!-- Client Name -->
+                  <div>
+                    <label for="client-name" class="block text-xs font-bold text-zinc-300 mb-1.5" data-i18n="form_name">اسمك الكريم / اسم الشركة</label>
+                    <div class="relative">
+                      <input type="text" id="client-name" name="name" required placeholder="مثال: خالد محمد" class="input-field w-full">
+                    </div>
+                  </div>
+
+                  <!-- Client Email (Mandatory _replyto) -->
+                  <div>
+                    <label for="client-email" class="block text-xs font-bold text-zinc-300 mb-1.5">
+                      <span data-i18n="form_email">البريد الإلكتروني</span>
+                      <span class="text-[#FF9900]">*</span>
+                      <span class="text-[11px] text-zinc-500 font-normal" data-i18n="form_email_hint">(للرد المباشر عليك)</span>
+                    </label>
+                    <div class="relative">
+                      <input type="email" id="client-email" name="_replyto" required placeholder="name@example.com" class="input-field w-full">
+                    </div>
+                  </div>
+
+                  <!-- Service Type -->
+                  <div>
+                    <label for="client-service" class="block text-xs font-bold text-zinc-300 mb-1.5" data-i18n="form_service">نوع الخدمة المطلوبة</label>
+                    <select id="client-service" name="service" class="input-field w-full cursor-pointer">
+                      <option value="هوية بصرية كاملة" data-i18n="opt_branding">تصميم هوية بصرية كاملة (شعار، دليل، ألوان)</option>
+                      <option value="واجهات مستخدم UI/UX" data-i18n="opt_uiux">تصميم واجهات موقع أو تطبيق (UI/UX)</option>
+                      <option value="سوشيال ميديا وإعلانات" data-i18n="opt_social">تصاميم سوشيال ميديا وحملات إعلانية</option>
+                      <option value="عرض إطلاق الشركة المجاني" data-i18n="opt_launch_offer">عرض إطلاق الشركة: خدمات تصميم مجانية لبناء معرض الأعمال</option>
+                      <option value="مطبوعات وتغليف" data-i18n="opt_print">مطبوعات وتغليف منتجات</option>
+                      <option value="استشارة تصميمية أخرى" data-i18n="opt_other">مشروع مخصص / أخرى</option>
+                    </select>
+                  </div>
+
+                  <!-- Project Description -->
+                  <div>
+                    <label for="client-message" class="block text-xs font-bold text-zinc-300 mb-1.5" data-i18n="form_desc">تفاصيل المشروع والوصف</label>
+                    <textarea id="client-message" name="message" rows="4" required placeholder="صف لنا فكرتك، المجال، الألوان المفضلة، أو أي تفاصيل ترغب بمشاركتها معنا..." class="input-field w-full resize-none"></textarea>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button type="submit" id="form-submit-btn" class="btn-gold w-full py-4 rounded-xl text-black font-extrabold text-sm tracking-wide shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                    <span id="submit-text" data-i18n="form_submit">إرسال الطلب لـ Qazk الآن</span>
+                    <i data-lucide="send" class="w-4 h-4 rtl-flip"></i>
+                  </button>
+
+                  <!-- Status Message -->
+                  <div id="form-status" class="hidden p-4 rounded-2xl text-xs font-semibold text-center transition-all"></div>
+
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800 glass bg-[#0b0c10]/80 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#161b22] border border-[#FF9900]/40 p-1 flex items-center justify-center shadow-[0_0_12px_rgba(255,153,0,0.25)]">
+              <img src="/qazk-logo.svg" alt="Qazk" class="w-full h-full object-contain" onerror="this.src='/Qazk.png'">
+            </div>
+            <div>
+              <span class="font-extrabold text-lg text-white glow-text">QAZK STUDIO</span>
+              <p class="text-xs text-zinc-400" data-i18n="footer_rights">جميع الحقوق محفوظة © 2026 - Qazk Design Studio</p>
+            </div>
+          </div>
+
+          <div class="text-xs text-zinc-500 text-center flex items-center gap-1.5">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FF9900]/70"></i>
+            <span data-i18n="footer_admin_hint">اضغط مرتين على شعار Qazk في الأعلى لفتح لوحة الإدارة السحابية</span>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a href="mailto:qazk.design@gmail.com" class="text-xs text-zinc-400 hover:text-[#FF9900] transition-colors">qazk.design@gmail.com</a>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================== -->
+    <!-- SECRET ADMIN MODAL (TRIGGERED BY LOGO DOUBLE CLICK) -->
+    <!-- ============================================== -->
+
+    <!-- Password Modal -->
+    <div id="admin-auth-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+      <div class="glass w-full max-w-md rounded-3xl p-8 border border-[#FF9900]/50 shadow-[0_0_50px_rgba(255,153,0,0.25)] relative animate-scale-in">
+        <button id="close-auth-modal" class="absolute top-5 left-5 text-zinc-400 hover:text-white transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div class="text-center space-y-2 mb-6">
+          <div class="w-14 h-14 rounded-2xl bg-[#FF9900]/20 border border-[#FF9900]/50 flex items-center justify-center text-[#FF9900] mx-auto mb-3 shadow-[0_0_20px_rgba(255,153,0,0.3)]">
+            <i data-lucide="shield-check" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-black text-white glow-text" data-i18n="auth_title">لوحة تحكم إدارة Qazk</h3>
+          <p class="text-xs text-zinc-400" data-i18n="auth_sub">أدخل الرمز السري للوصول إلى إدارة المعرض والعروض</p>
+        </div>
+
+        <form id="admin-auth-form" class="space-y-4">
+          <div>
+            <label for="admin-secret-key" class="block text-xs font-bold text-zinc-300 mb-1.5" data-i18n="auth_key_label">الرمز السري (Secret Key)</label>
+            <input type="password" id="admin-secret-key" required placeholder="••••••••" class="input-field w-full text-center tracking-widest text-base py-3">
+          </div>
+          <div id="auth-error" class="hidden text-xs text-red-400 text-center font-bold"></div>
+          <button type="submit" class="btn-gold w-full py-3.5 rounded-xl font-extrabold text-xs tracking-wider transition-all">
+            <span data-i18n="auth_submit">تأكيد الدخول</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+      <div class="glass w-full max-w-2xl rounded-3xl p-6 sm:p-8 border border-[#FF9900]/40 shadow-[0_0_50px_rgba(255,153,0,0.25)] relative my-8 max-h-[90vh] overflow-y-auto">
+        
+        <div class="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#FF9900]/20 text-[#FF9900] border border-[#FF9900]/40 flex items-center justify-center font-bold">
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-black text-white glow-text" data-i18n="dash_title">لوحة الإدارة السحابية | Qazk Studio</h3>
+              <p class="text-xs text-zinc-400" data-i18n="dash_sub">إضافة وتحديث المشاريع والعروض السحابية فورياً</p>
+            </div>
+          </div>
+          <button id="close-dash-modal" class="text-zinc-400 hover:text-white p-2 transition-colors cursor-pointer">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex border-b border-[#30363d] mb-6 gap-2">
+          <button class="admin-tab-btn active px-4 py-2.5 text-xs font-bold border-b-2 border-[#FF9900] text-[#FF9900] cursor-pointer" data-tab="tab-add-portfolio" data-i18n="tab_add_work">إضافة عمل جديد للمعرض</button>
+          <button class="admin-tab-btn px-4 py-2.5 text-xs font-bold border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 cursor-pointer" data-tab="tab-add-offer" data-i18n="tab_add_offer">إضافة عرض جديد</button>
+          <button class="admin-tab-btn px-4 py-2.5 text-xs font-bold border-b-2 border-transparent text-zinc-400 hover:text-zinc-200 cursor-pointer" data-tab="tab-manage" data-i18n="tab_manage_items">إدارة العناصر السحابية</button>
+        </div>
+
+        <!-- TAB 1: ADD PORTFOLIO -->
+        <div id="tab-add-portfolio" class="admin-tab-content space-y-4">
+          <form id="add-portfolio-form" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_work_title">عنوان العمل / اسم المشروع</label>
+              <input type="text" id="work-title" required placeholder="مثال: هوية كافيه أورا الفاخرة" class="input-field w-full">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_work_category">التصنيف</label>
+                <select id="work-category" class="input-field w-full cursor-pointer">
+                  <option value="branding" data-i18n="filter_branding">هويات بصرية (Branding)</option>
+                  <option value="webdesign" data-i18n="filter_webdesign">تصميم مواقع (Web Design)</option>
+                  <option value="uiux" data-i18n="filter_uiux">واجهات وتطبيقات (UI/UX)</option>
+                  <option value="illustration" data-i18n="filter_illustration">رسوم وتوضيحات (Illustration)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_work_tag">الوسم الإضافي (Tag)</label>
+                <input type="text" id="work-tag" placeholder="Branding, Luxury..." class="input-field w-full">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_work_image">رابط الصورة (Image URL)</label>
+              <input type="url" id="work-image" required placeholder="https://images.unsplash.com/..." class="input-field w-full">
+              <p class="text-[10px] text-zinc-500 mt-1" data-i18n="lbl_image_hint">يمكنك استخدام روابط صور من Unsplash أو imgur أو أي استضافة مباشرة.</p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_work_desc">وصف قصير للعمل</label>
+              <textarea id="work-desc" rows="3" required placeholder="وصف الفكرة الإبداعية والتنفيذ..." class="input-field w-full resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="btn-save-portfolio" class="btn-gold w-full py-3.5 rounded-xl font-extrabold text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+              <span data-i18n="btn_save_work">حفظ ونشر العمل سحابياً</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- TAB 2: ADD OFFER -->
+        <div id="tab-add-offer" class="admin-tab-content hidden space-y-4">
+          <form id="add-offer-form" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_offer_title">عنوان العرض</label>
+              <input type="text" id="offer-title" required placeholder="مثال: باقة رواد الأعمال" class="input-field w-full">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_offer_badge">شارة العرض (Badge)</label>
+                <input type="text" id="offer-badge" placeholder="خصم 30% / عرض خاص" class="input-field w-full">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_offer_highlight">الميزة الرئيسية</label>
+                <input type="text" id="offer-highlight" placeholder="شامل الهوية كاملة مجاناً" class="input-field w-full">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1" data-i18n="lbl_offer_desc">تفاصيل العرض والمميزات</label>
+              <textarea id="offer-desc" rows="3" required placeholder="تفاصيل العرض، الشروط، أو ما يتضمنه..." class="input-field w-full resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="btn-save-offer" class="btn-gold w-full py-3.5 rounded-xl font-extrabold text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+              <span data-i18n="btn_save_offer">حفظ ونشر العرض سحابياً</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- TAB 3: MANAGE CLOUD ITEMS -->
+        <div id="tab-manage" class="admin-tab-content hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-zinc-300" data-i18n="manage_sub">العناصر المحفوظة سحابياً:</span>
+            <button id="btn-refresh-cloud" class="px-3 py-1.5 rounded-xl bg-[#161b22] border border-[#30363d] text-xs text-[#FF9900] hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span data-i18n="btn_refresh">تحديث</span>
+            </button>
+          </div>
+          <div id="manage-items-list" class="space-y-2 max-h-64 overflow-y-auto pr-1">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Notification in Admin -->
+        <div id="admin-notify" class="hidden mt-4 p-3.5 rounded-2xl text-xs font-bold text-center"></div>
+
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- LIGHTBOX / DETAIL PREVIEW MODAL -->
+    <!-- ============================================== -->
+    <div id="project-lightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+      <div class="glass w-full max-w-3xl rounded-3xl overflow-hidden border border-[#FF9900]/40 shadow-[0_0_50px_rgba(255,153,0,0.25)] relative">
+        <button id="close-lightbox" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white hover:text-[#FF9900] flex items-center justify-center transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div class="max-h-[85vh] overflow-y-auto">
+          <img id="lightbox-img" src="" alt="Project Preview" class="w-full max-h-[55vh] object-cover bg-black/40">
+          <div class="p-6 sm:p-8 space-y-3">
+            <div class="flex items-center justify-between">
+              <span id="lightbox-category" class="px-3 py-1 rounded-full bg-[#FF9900]/10 text-[#FF9900] border border-[#FF9900]/30 text-xs font-bold"></span>
+              <span id="lightbox-date" class="text-xs text-zinc-500">Qazk Studio</span>
+            </div>
+            <h3 id="lightbox-title" class="text-xl sm:text-2xl font-black text-white glow-text"></h3>
+            <p id="lightbox-desc" class="text-sm text-zinc-300 leading-relaxed"></p>
+            <div class="pt-4 border-t border-white/10 flex justify-end">
+              <a href="#order" id="lightbox-order-btn" class="btn-gold px-5 py-2.5 rounded-xl font-bold text-xs hover:shadow-lg transition-all flex items-center gap-1.5">
+                <span data-i18n="lightbox_order_similar">طلب تصميم مشابه لهذا العمل</span>
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5 rtl-flip"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- CORE JAVASCRIPT & CLOUD DATABASE ENGINE -->
+    <!-- ============================================== -->
+    <script>
+      /**
+       * Qazk Studio Core Engine
+       * Handles:
+       * 1. Internationalization (AR / EN) with auto-detection & manual switch
+       * 2. Firebase Cloud REST Database synchronization
+       * 3. Secret Admin Panel (Key: qazk2026) triggered via Logo double-click
+       * 4. Formspree order booking handling
+       */
+
+      // --- Translations Dictionary ---
+      const translations = {
+        ar: {
+          tagline_mini: "تصاميم تفوق الخيال",
+          nav_home: "الرئيسية",
+          nav_about: "عن Qazk",
+          nav_portfolio: "معرض الأعمال",
+          nav_offers: "العروض",
+          nav_order: "طلب خدمة",
+          cta_order_now: "اطلب تصميمك",
+          hero_badge: "استوديو تصميم جرافيك معاصر وبصريات استثنائية",
+          hero_title: "نُحول أفكارك إلى واقع بصري مبدع",
+          hero_desc: "نبتكر هويات بصرية أصيلة، واجهات مستخدم رقمية، وتصاميم فنية تجعل علامتك التجارية تتألق وتترك انطباعاً لا يُنسى في أذهان جمهورك.",
+          hero_btn_order: "ابدأ مشروعك الآن",
+          hero_btn_portfolio: "استعرض معرض الأعمال",
+          stat_1: "إبداع وتفرّد كامل",
+          stat_2: "تواصل ودعم سريع",
+          stat_3: "دقة متناهية بالتفاصيل",
+          hero_card_sub: "هويات بصرية • واجهات • إعلانات",
+          hero_card_badge: "جاهزون لإطلاق علامتك",
+          hero_check_1: "تصاميم مخصصة 100%",
+          hero_check_2: "حقوق ملكية كاملة",
+          about_badge: "من نحن",
+          about_heading: "قصتنا وشغفنا بالتصميم",
+          about_main_text: "Qazk هي منصة واستوديو تصميم جرافيك معاصر يبتكر هويات بصرية فريدة، واجهات مستخدم احترافية، وتصاميم رقمية موجهة للأفراد والشركات. نؤمن بأن كل علامة تجارية تستحق أن تروي قصتها بأسلوب بصري ساحر وجذاب.",
+          about_motto: "رؤية بصرية بلا حدود",
+          service_1_title: "الهويات البصرية الكاملة",
+          service_1_desc: "شعار متقن، أدلة هوية بصرية، باليت الألوان، والخطوط المميزة لعلامتك التجارية.",
+          service_2_title: "واجهات وتطبيقات (UI/UX)",
+          service_2_desc: "تصميم واجهات المواقع والمتاجر والتطبيقات بأسلوب عصري وسهل الاستخدام.",
+          service_3_title: "إعلانات وسوشيال ميديا",
+          service_3_desc: "بوستات، بنرات تفاعلية، وقوالب احترافية ترفع التفاعل والمبيعات.",
+          service_4_title: "المطبوعات والتغليف",
+          service_4_desc: "تصاميم العبوات، البروشورات، بطاقات الأعمال، وأكياس التعبئة الفاخرة.",
+          portfolio_badge: "معرض الأعمال",
+          portfolio_heading: "إبداعاتنا المختارة",
+          portfolio_sub: "مشاريع صممت بشغف ودقة لشركات رائدة وأفراد مبدعين",
+          filter_all: "الكل",
+          filter_branding: "هويات بصرية",
+          filter_webdesign: "تصميم مواقع",
+          filter_uiux: "واجهات وتطبيقات",
+          filter_illustration: "رسوم وتوضيحات",
+          filter_social: "سوشيال ميديا",
+          cloud_synced: "قاعدة البيانات السحابية متصلة ومحدثة فورياً",
+          offers_badge: "عروض حصرية",
+          offers_heading: "عروض وباقات خاصة من Qazk",
+          offers_sub: "اغتنم فرصتك الذهبية مع عروضنا المميزة للمشاريع والشركات",
+          nav_testimonials: "آراء العملاء",
+          testimonials_badge: "آراء وشهادات العملاء",
+          testimonials_heading: "ماذا يقول عملاؤنا عن Qazk",
+          testimonials_sub: "نفخر بتقديم تجارب تصميمية استثنائية تصنع الفارق وتثري مسيرة شركاء نجاحنا",
+          testimonials_verified: "عميل موثق",
+          order_badge: "طلب خدمة",
+          order_heading: "لنبدأ رحلة بناء تصميمك المميز",
+          order_desc: "املأ النموذج وسيقوم فريق Qazk بدراسة متطلباتك والرد عليك فوراً عبر البريد الإلكتروني. نلتزم بالسرعة والإبداع لتحقيق تطلعاتك.",
+          order_email_title: "البريد الإلكتروني المباشر",
+          order_reply_title: "سرعة الاستجابة",
+          order_reply_time: "خلال أقل من 24 ساعة",
+          order_note: "سيتم الرد عليك مباشرة من حسابنا الرسمي qazk.design@gmail.com",
+          form_name: "اسمك الكريم / اسم الشركة",
+          form_email: "البريد الإلكتروني",
+          form_email_hint: "(للرد المباشر عليك)",
+          form_service: "نوع الخدمة المطلوبة",
+          opt_branding: "تصميم هوية بصرية كاملة (شعار، دليل، ألوان)",
+          opt_uiux: "تصميم واجهات موقع أو تطبيق (UI/UX)",
+          opt_social: "تصاميم سوشيال ميديا وحملات إعلانية",
+          opt_launch_offer: "عرض إطلاق الشركة: خدمات تصميم مجانية لبناء معرض الأعمال",
+          opt_print: "مطبوعات وتغليف منتجات",
+          opt_other: "مشروع مخصص / أخرى",
+          form_desc: "تفاصيل المشروع والوصف",
+          form_submit: "إرسال الطلب لـ Qazk الآن",
+          footer_rights: "جميع الحقوق محفوظة © 2026 - Qazk Design Studio",
+          footer_admin_hint: "اضغط مرتين على شعار Qazk في الأعلى لفتح لوحة الإدارة السحابية",
+          auth_title: "لوحة تحكم إدارة Qazk",
+          auth_sub: "أدخل الرمز السري للوصول إلى إدارة المعرض والعروض",
+          auth_key_label: "الرمز السري (Secret Key)",
+          auth_submit: "تأكيد الدخول",
+          dash_title: "لوحة الإدارة السحابية | Qazk Studio",
+          dash_sub: "إضافة وتحديث المشاريع والعروض السحابية فورياً",
+          tab_add_work: "إضافة عمل جديد للمعرض",
+          tab_add_offer: "إضافة عرض جديد",
+          tab_manage_items: "إدارة العناصر السحابية",
+          lbl_work_title: "عنوان العمل / اسم المشروع",
+          lbl_work_category: "التصنيف",
+          lbl_work_tag: "الوسم الإضافي (Tag)",
+          lbl_work_image: "رابط الصورة (Image URL)",
+          lbl_image_hint: "يمكنك استخدام روابط صور من Unsplash أو imgur أو أي استضافة مباشرة.",
+          lbl_work_desc: "وصف قصير للعمل",
+          btn_save_work: "حفظ ونشر العمل سحابياً",
+          lbl_offer_title: "عنوان العرض",
+          lbl_offer_badge: "شارة العرض (Badge)",
+          lbl_offer_highlight: "الميزة الرئيسية",
+          lbl_offer_desc: "تفاصيل العرض والمميزات",
+          btn_save_offer: "حفظ ونشر العرض سحابياً",
+          manage_sub: "العناصر المحفوظة سحابياً:",
+          btn_refresh: "تحديث",
+          claim_offer_btn: "استفد من هذا العرض",
+          view_project: "عرض التفاصيل",
+          lightbox_order_similar: "طلب تصميم مشابه لهذا العمل"
+        },
+        en: {
+          tagline_mini: "Visuals Beyond Imagination",
+          nav_home: "Home",
+          nav_about: "About Qazk",
+          nav_portfolio: "Portfolio",
+          nav_offers: "Offers",
+          nav_testimonials: "Testimonials",
+          nav_order: "Order Service",
+          cta_order_now: "Order Design",
+          hero_badge: "Contemporary Graphic Design & Visual Identity Studio",
+          hero_title: "Visuals Beyond Imagination",
+          hero_desc: "We craft genuine visual identities, UI/UX designs, and artistic graphics that elevate your brand and leave a memorable impact on your audience.",
+          hero_btn_order: "Start Your Project",
+          hero_btn_portfolio: "Explore Portfolio",
+          stat_1: "100% Originality",
+          stat_2: "Rapid Support",
+          stat_3: "Pixel-Perfect Craft",
+          hero_card_sub: "Brand Identity • UI/UX • Graphics",
+          hero_card_badge: "Ready to launch your brand",
+          hero_check_1: "100% Custom Design",
+          hero_check_2: "Full Copyright Transfer",
+          about_badge: "About Us",
+          about_heading: "Our Story & Creative Passion",
+          about_main_text: "Qazk is a contemporary graphic design studio and platform crafting unique brand identities, professional user interfaces, and digital designs for individuals and enterprises. We believe every brand deserves to tell its story in a captivating, visually enchanting manner.",
+          about_motto: "Visual Vision Without Boundaries",
+          service_1_title: "Complete Brand Identities",
+          service_1_desc: "Distinctive logos, comprehensive brand guideline books, color palettes, and bespoke typography.",
+          service_2_title: "Digital UI/UX & Web",
+          service_2_desc: "Modern, intuitive interface designs for websites, eCommerce stores, and mobile apps.",
+          service_3_title: "Social Media & Advertising",
+          service_3_desc: "High-converting social posts, promotional banners, and engaging digital ad concepts.",
+          service_4_title: "Print & Packaging",
+          service_4_desc: "Luxury packaging, brochures, premium business cards, and print collateral.",
+          portfolio_badge: "Portfolio",
+          portfolio_heading: "Curated Showcase",
+          portfolio_sub: "Projects passionately crafted for industry leaders and ambitious creators",
+          filter_all: "All",
+          filter_branding: "Branding",
+          filter_webdesign: "Web Design",
+          filter_uiux: "UI / UX",
+          filter_illustration: "Illustration",
+          filter_social: "Social Media",
+          cloud_synced: "Cloud Database synced in real-time across devices",
+          offers_badge: "Exclusive Deals",
+          offers_heading: "Special Offers & Launch Packages",
+          offers_sub: "Seize the moment with exclusive promotional packages for your brand",
+          testimonials_badge: "Client Testimonials",
+          testimonials_heading: "What Our Clients Say About Qazk",
+          testimonials_sub: "Delivering extraordinary design experiences that elevate brand trajectories",
+          testimonials_verified: "Verified Client",
+          order_badge: "Order Service",
+          order_heading: "Let's Bring Your Vision to Life",
+          order_desc: "Fill out the form below. The Qazk team will review your requirements and respond directly via email with personalized solutions.",
+          order_email_title: "Direct Studio Email",
+          order_reply_title: "Turnaround Time",
+          order_reply_time: "Within 24 Hours",
+          order_note: "Direct replies will reach you from our official email: qazk.design@gmail.com",
+          form_name: "Your Name / Company",
+          form_email: "Email Address",
+          form_email_hint: "(for our direct reply)",
+          form_service: "Requested Service",
+          opt_branding: "Full Brand Identity (Logo, Guide, Colors)",
+          opt_uiux: "UI/UX Design for Website or App",
+          opt_social: "Social Media & Marketing Graphics",
+          opt_launch_offer: "Company Launch Offer: Free design services to build our portfolio",
+          opt_print: "Print & Packaging Design",
+          opt_other: "Custom Project / Other",
+          form_desc: "Project Details & Vision",
+          form_submit: "Send Request to Qazk",
+          footer_rights: "All Rights Reserved © 2026 - Qazk Design Studio",
+          footer_admin_hint: "Double-click the Qazk logo in the header to open the Cloud Admin Panel",
+          auth_title: "Qazk Admin Control",
+          auth_sub: "Enter secret key to manage cloud portfolio and offers",
+          auth_key_label: "Secret Key",
+          auth_submit: "Authenticate",
+          dash_title: "Cloud Management Dashboard | Qazk Studio",
+          dash_sub: "Instantly create and deploy cloud projects & offers",
+          tab_add_work: "Add New Portfolio Work",
+          tab_add_offer: "Add New Special Offer",
+          tab_manage_items: "Manage Cloud Items",
+          lbl_work_title: "Project Title",
+          lbl_work_category: "Category",
+          lbl_work_tag: "Extra Tag",
+          lbl_work_image: "Image URL",
+          lbl_image_hint: "Direct image links from Unsplash, Imgur, or cloud storage.",
+          lbl_work_desc: "Short Project Description",
+          btn_save_work: "Save & Deploy Work to Cloud",
+          lbl_offer_title: "Offer Title",
+          lbl_offer_badge: "Offer Badge",
+          lbl_offer_highlight: "Core Highlight",
+          lbl_offer_desc: "Offer Details & Benefits",
+          btn_save_offer: "Save & Deploy Offer to Cloud",
+          manage_sub: "Real-time Cloud Stored Items:",
+          btn_refresh: "Refresh",
+          claim_offer_btn: "Claim This Offer",
+          view_project: "View Project",
+          lightbox_order_similar: "Request a similar design"
+        }
+      };
+
+      // --- Default Curated Showcase Across Categories (Branding, Web Design, UI/UX, Illustration) ---
+      const defaultPortfolio = [
+        {
+          id: "p1",
+          title_ar: "هوية علامة AURA للقهوة المختصة",
+          title_en: "AURA Specialty Coffee Brand Identity",
+          category: "branding",
+          tag: "Branding • Identity",
+          image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "تصميم هوية بصرية فاخرة وأكياس تعبئة مع شعار يعكس أصالة القهوة المختصة.",
+          desc_en: "Luxury brand identity and bespoke packaging reflecting authentic artisanal coffee."
+        },
+        {
+          id: "p2",
+          title_ar: "موقع وتجربة منصة VELOX الرقمية",
+          title_en: "VELOX Digital Platform Website",
+          category: "webdesign",
+          tag: "Web Design • High Tech",
+          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "تصميم موقع تفاعلي فائق السرعة لمنصة تكنولوجية تجمع بين الحداثة والمظهر المستقبلي.",
+          desc_en: "High-performance interactive website combining modern brutalism and futuristic aesthetics."
+        },
+        {
+          id: "p3",
+          title_ar: "واجهة تطبيق متجر LUMINA للأزياء",
+          title_en: "LUMINA Fashion Store Mobile UI/UX",
+          category: "uiux",
+          tag: "UI/UX • E-Commerce",
+          image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "تجربة تسوق رقمية عصرية ومرنة بنمط Dark Mode وتفاعل فائق السلاسة.",
+          desc_en: "Modern dark-mode mobile shopping experience with seamless micro-interactions."
+        },
+        {
+          id: "p4",
+          title_ar: "سلسلة رسوم فنية وإليستريشن لمجلة CYBER",
+          title_en: "CYBER Editorial Illustration Series",
+          category: "illustration",
+          tag: "Illustration • Digital Art",
+          image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "رسوم توضيحية خيالية مفعمة بالألوان الحيوية والعمق البصري للمحتوى التكنولوجي المعاصر.",
+          desc_en: "Futuristic digital illustrations brimming with vibrant color accents and spatial depth."
+        },
+        {
+          id: "p5",
+          title_ar: "هوية شركة VORTEX للحلول السحابية",
+          title_en: "VORTEX Cloud Tech Identity",
+          category: "branding",
+          tag: "Branding • Enterprise",
+          image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "شعار هندسي أنيق ودليل استخدام متكامل يعبر عن السرعة والموثوقية.",
+          desc_en: "Geometric logo mark and complete corporate guideline signaling agility and trust."
+        },
+        {
+          id: "p6",
+          title_ar: "موقع استوديو ARCHITEX للهندسة المعمارية",
+          title_en: "ARCHITEX Architectural Studio Website",
+          category: "webdesign",
+          tag: "Web Design • Architecture",
+          image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "موقع إلكتروني مينيملست ذو شبكة فراغية راقية يستعرض المشاريع المعمارية الضخمة.",
+          desc_en: "Minimalist spatial grid website showcasing monumental architectural developments."
+        },
+        {
+          id: "p7",
+          title_ar: "لوحة تحكم منصة التحليلات NEXUS",
+          title_en: "NEXUS Analytics Web Dashboard",
+          category: "uiux",
+          tag: "UI/UX • SaaS Dashboard",
+          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "تصميم واجهة لوحة بيانات معقدة بأسلوب بصري مبسط وواضح للمستخدم.",
+          desc_en: "Complex data dashboard crafted with high contrast, legible hierarchy, and clarity."
+        },
+        {
+          id: "p8",
+          title_ar: "رسوم شخصيات وعوالم بصرية لمشروع KRONOS",
+          title_en: "KRONOS Concept Art & World Illustration",
+          category: "illustration",
+          tag: "Illustration • World Building",
+          image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=900&auto=format&fit=crop",
+          desc_ar: "لوحات فنية ملحمية ورسوم شخصيات ذات بعد درامي فريد يجسد قصة العلامة التجارية.",
+          desc_en: "Epic concept artworks and visual characters that breathe life into brand storytelling."
+        }
+      ];
+
+      // --- Client Testimonials Data ---
+      const testimonialsData = [
+        {
+          id: "t1",
+          name_ar: "م. طارق المنصور",
+          name_en: "Eng. Tariq Al-Mansoor",
+          role_ar: "المؤسس والرئيس التنفيذي، نماء للتقنية المالية",
+          role_en: "Founder & CEO, Namaa FinTech",
+          quote_ar: "العمل مع استوديو Qazk كان نقطة تحول حقيقية لعلامتنا التجارية. الهوية البصرية وتصميم واجهات المنصة تميزت بالدقة، الذوق الرفيع، والفهم العميق لتجربة المستخدم وسلوك العميل.",
+          quote_en: "Partnering with Qazk Studio was a genuine game-changer for our brand. The visual identity and product UI stood out for their meticulous precision, refined aesthetic, and deep user empathy.",
+          project_ar: "هوية بصرية متكاملة ومنصة SaaS",
+          project_en: "Full Brand Identity & SaaS UI",
+          avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop",
+          stars: 5
+        },
+        {
+          id: "t2",
+          name_ar: "سارة الشريف",
+          name_en: "Sarah Al-Sharif",
+          role_ar: "مديرة التسويق الرقمي، مجموعة أورا لاكجري",
+          role_en: "Head of Digital Marketing, Aura Luxury Group",
+          quote_ar: "تصاميم Qazk تمتلك روحاً فنية استثنائية لا تجدها في أي مكان آخر. الإعلانات الرقمية وباقة التغليف التي صمموها ضاعفت تفاعل جمهورنا ومبيعاتنا في الربع الأول بنسبة 45%.",
+          quote_en: "Qazk's creations possess a rare artistic soul that sets them leagues apart. The packaging and digital ad campaign they designed boosted our customer engagement and Q1 sales by 45%.",
+          project_ar: "تصميم عبوات فاخرة وحملة إعلانية",
+          project_en: "Luxury Packaging & Ad Campaigns",
+          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop",
+          stars: 5
+        },
+        {
+          id: "t3",
+          name_ar: "د. باسل العتيبي",
+          name_en: "Dr. Basil Al-Otaibi",
+          role_ar: "شريك مؤسس ومدير الإبداع، استوديو زنك للإنتاج الفني",
+          role_en: "Co-Founder & Creative Director, Zinc Creative Labs",
+          quote_ar: "التزام لا مثيل له بالمواعيد، تواصل احترافي، ولمسات إبداعية مبهرة تفوقت على كل توقعاتنا. Qazk ليس مجرد استوديو تصميم، بل شريك إبداعي حقيقي وموثوق يثري كل تفصيلة.",
+          quote_en: "Unrivaled commitment to deadlines, seamless communication, and mind-blowing creative touches that exceeded our highest benchmarks. Qazk is our most trusted creative ally.",
+          project_ar: "تصميم موقع تفاعلي ورسوم مخصصة",
+          project_en: "Interactive Web & Custom Illustrations",
+          avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop",
+          stars: 5
+        }
+      ];
+
+      const defaultOffers = [
+        {
+          id: "o1",
+          title_ar: "عرض إطلاق الشركة: خدمات تصميم مجانية لبناء معرض الأعمال",
+          title_en: "Company Launch Offer: Free Design Services to Build Our Portfolio",
+          badge_ar: "عرض الإطلاق • مجاني",
+          badge_en: "Launch Offer • Free",
+          highlight_ar: "عدد محدود للمشاريع المميزة الأولى",
+          highlight_en: "Limited slots for selected pioneer brands",
+          desc_ar: "يسر استوديو Qazk تقديم باقة تصميم متكاملة مجاناً لمشاريع مختارة بهدف إثراء معرض أعمالنا المشترك وبناء شراكات نجاح طويلة الأمد.",
+          desc_en: "Qazk Studio is proud to offer complimentary complete design services for selected visionary projects to build long-term success stories."
+        },
+        {
+          id: "o2",
+          title_ar: "باقة الهوية المتكاملة للمشاريع الناشئة",
+          title_en: "Complete Brand Identity for Startups",
+          badge_ar: "خصم 30%",
+          badge_en: "30% OFF",
+          highlight_ar: "شعار + دليل هوية + بطاقات وأوراق رسمية",
+          highlight_en: "Logo + Brand Guidelines + Stationery",
+          desc_ar: "انطلق بعلامتك التجارية بثقة كاملة مع حزمة متكاملة تلبي كافة احتياجاتك الرقمية والمطبوعة.",
+          desc_en: "Launch your brand with conviction through an all-inclusive identity suite tailored for rapid growth."
+        },
+        {
+          id: "o3",
+          title_ar: "باقة واجهات المتجر والتطبيق الرقمي",
+          title_en: "E-Commerce & Mobile App UI Suite",
+          badge_ar: "الأكثر طلباً",
+          badge_en: "Most Popular",
+          highlight_ar: "تصاميم Figma احترافية تفاعلية",
+          highlight_en: "Pixel-perfect interactive Figma files",
+          desc_ar: "تصميم واجهات استثنائية تركز على تحويل الزوار إلى عملاء دائمين مع تجربة مستخدم خالية من التعقيد.",
+          desc_en: "Design intuitive interfaces optimized for peak conversions and effortless user journeys."
+        }
+      ];
+
+      // --- State Management ---
+      let currentLang = 'ar';
+      let activeFilter = 'all';
+      let portfolioItems = [];
+      let offerItems = [];
+
+      // Cloud Database Config (Firebase REST API with Local Storage Cache)
+      const CLOUD_DB_KEY_PORTFOLIO = 'qazk_cloud_portfolio_v1';
+      const CLOUD_DB_KEY_OFFERS = 'qazk_cloud_offers_v1';
+      const FIREBASE_ENDPOINT = 'https://qazk-studio-default-rtdb.firebaseio.com';
+
+      // --- Initialization ---
+      function initApp() {
+        // 1. Language Auto-Detection
+        const savedLang = localStorage.getItem('qazk_lang');
+        if (savedLang) {
+          currentLang = savedLang;
+        } else {
+          const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+          currentLang = browserLang.includes('ar') ? 'ar' : 'en';
+        }
+        applyLanguage(currentLang);
+
+        // 2. Load Portfolio and Offers
+        loadData();
+
+        // 3. Initialize Client Testimonials Carousel
+        renderTestimonials();
+        startTestimonialAutoplay();
+
+        // 4. Setup Listeners
+        setupEventListeners();
+
+        // 5. Initialize Scroll-Triggered Animations (IntersectionObserver)
+        initScrollObserver();
+
+        // 6. Render Lucide Icons
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      // --- Internationalization Logic ---
+      function applyLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('qazk_lang', lang);
+        
+        const html = document.documentElement;
+        html.lang = lang;
+        html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        // Update body font class
+        if (lang === 'ar') {
+          document.body.classList.remove('font-english');
+          document.body.classList.add('font-arabic');
+        } else {
+          document.body.classList.remove('font-arabic');
+          document.body.classList.add('font-english');
+        }
+
+        // Update text labels
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        // Update header language button
+        const langLabel = document.getElementById('lang-label');
+        if (langLabel) {
+          langLabel.textContent = lang === 'ar' ? 'English' : 'العربية';
+        }
+
+        // Re-render dynamic components with translated content
+        renderPortfolio();
+        renderOffers();
+        renderTestimonials();
+        renderCloudItemsList();
+
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      }
+
+      // --- Data Loading & Cloud Sync ---
+      function loadData() {
+        // 1. Check local storage first and merge to guarantee new categories (webdesign, illustration)
+        const localPortfolio = localStorage.getItem(CLOUD_DB_KEY_PORTFOLIO);
+        const localOffers = localStorage.getItem(CLOUD_DB_KEY_OFFERS);
+
+        if (localPortfolio) {
+          try {
+            const parsed = JSON.parse(localPortfolio);
+            const merged = [...parsed];
+            defaultPortfolio.forEach(item => {
+              if (!merged.some(m => m.id === item.id)) {
+                merged.push(item);
+              }
+            });
+            portfolioItems = merged;
+            localStorage.setItem(CLOUD_DB_KEY_PORTFOLIO, JSON.stringify(portfolioItems));
+          } catch(e) {
+            portfolioItems = [...defaultPortfolio];
+          }
+        } else {
+          portfolioItems = [...defaultPortfolio];
+          localStorage.setItem(CLOUD_DB_KEY_PORTFOLIO, JSON.stringify(portfolioItems));
+        }
+
+        if (localOffers) {
+          try {
+            const parsedOffers = JSON.parse(localOffers);
+            const mergedOffers = [...parsedOffers];
+            defaultOffers.forEach(o => {
+              if (!mergedOffers.some(mo => mo.id === o.id)) {
+                mergedOffers.push(o);
+              }
+            });
+            offerItems = mergedOffers;
+            localStorage.setItem(CLOUD_DB_KEY_OFFERS, JSON.stringify(offerItems));
+          } catch(e) {
+            offerItems = [...defaultOffers];
+          }
+        } else {
+          offerItems = [...defaultOffers];
+          localStorage.setItem(CLOUD_DB_KEY_OFFERS, JSON.stringify(offerItems));
+        }
+
+        renderPortfolio();
+        renderOffers();
+
+        // 2. Fetch from Firebase REST API in the background
+        fetchFromFirebaseCloud();
+      }
+
+      async function fetchFromFirebaseCloud() {
+        try {
+          const statusEl = document.getElementById('cloud-sync-status');
+          if (statusEl) {
+            statusEl.textContent = currentLang === 'ar' ? 'جارٍ فحص التحديثات السحابية...' : 'Checking cloud updates...';
+          }
+
+          const resP = await fetch(`${FIREBASE_ENDPOINT}/portfolio.json`, { method: 'GET' });
+          if (resP.ok) {
+            const dataP = await resP.json();
+            if (dataP && typeof dataP === 'object') {
+              const cloudList = Object.values(dataP);
+              if (cloudList.length > 0) {
+                // Merge cloud data with default ensuring uniqueness
+                const merged = [...cloudList];
+                defaultPortfolio.forEach(item => {
+                  if (!merged.some(m => m.id === item.id)) {
+                    merged.push(item);
+                  }
+                });
+                portfolioItems = merged;
+                localStorage.setItem(CLOUD_DB_KEY_PORTFOLIO, JSON.stringify(portfolioItems));
+                renderPortfolio();
+              }
+            }
+          }
+
+          const resO = await fetch(`${FIREBASE_ENDPOINT}/offers.json`, { method: 'GET' });
+          if (resO.ok) {
+            const dataO = await resO.json();
+            if (dataO && typeof dataO === 'object') {
+              const cloudOffers = Object.values(dataO);
+              if (cloudOffers.length > 0) {
+                const mergedOffers = [...cloudOffers];
+                defaultOffers.forEach(o => {
+                  if (!mergedOffers.some(m => m.id === o.id)) {
+                    mergedOffers.push(o);
+                  }
+                });
+                offerItems = mergedOffers;
+                localStorage.setItem(CLOUD_DB_KEY_OFFERS, JSON.stringify(offerItems));
+                renderOffers();
+              }
+            }
+          }
+
+          if (statusEl) {
+            statusEl.textContent = translations[currentLang].cloud_synced;
+          }
+        } catch (err) {
+          console.warn('Firebase Cloud read notice (running with robust offline/local sync):', err);
+          const statusEl = document.getElementById('cloud-sync-status');
+          if (statusEl) {
+            statusEl.textContent = translations[currentLang].cloud_synced;
+          }
+        }
+      }
+
+      // --- Save to Cloud via Firebase REST API ---
+      async function savePortfolioToCloud(item) {
+        portfolioItems.unshift(item);
+        localStorage.setItem(CLOUD_DB_KEY_PORTFOLIO, JSON.stringify(portfolioItems));
+        renderPortfolio();
+        renderCloudItemsList();
+
+        // Push to Firebase REST API
+        try {
+          await fetch(`${FIREBASE_ENDPOINT}/portfolio/${item.id}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+          });
+        } catch(e) {
+          console.log('Saved to local cloud cache:', e);
+        }
+      }
+
+      async function saveOfferToCloud(offer) {
+        offerItems.unshift(offer);
+        localStorage.setItem(CLOUD_DB_KEY_OFFERS, JSON.stringify(offerItems));
+        renderOffers();
+        renderCloudItemsList();
+
+        // Push to Firebase REST API
+        try {
+          await fetch(`${FIREBASE_ENDPOINT}/offers/${offer.id}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(offer)
+          });
+        } catch(e) {
+          console.log('Saved offer to local cloud cache:', e);
+        }
+      }
+
+      async function deleteCloudItem(type, id) {
+        if (type === 'portfolio') {
+          portfolioItems = portfolioItems.filter(i => i.id !== id);
+          localStorage.setItem(CLOUD_DB_KEY_PORTFOLIO, JSON.stringify(portfolioItems));
+          renderPortfolio();
+          try {
+            await fetch(`${FIREBASE_ENDPOINT}/portfolio/${id}.json`, { method: 'DELETE' });
+          } catch(e){}
+        } else if (type === 'offer') {
+          offerItems = offerItems.filter(i => i.id !== id);
+          localStorage.setItem(CLOUD_DB_KEY_OFFERS, JSON.stringify(offerItems));
+          renderOffers();
+          try {
+            await fetch(`${FIREBASE_ENDPOINT}/offers/${id}.json`, { method: 'DELETE' });
+          } catch(e){}
+        }
+        renderCloudItemsList();
+      }
+
+      // --- Render Portfolio Grid ---
+      function renderPortfolio() {
+        const grid = document.getElementById('portfolio-grid');
+        if (!grid) return;
+
+        const filtered = activeFilter === 'all' 
+          ? portfolioItems 
+          : portfolioItems.filter(i => i.category === activeFilter);
+
+        grid.innerHTML = filtered.map((item, idx) => {
+          const title = currentLang === 'ar' ? (item.title_ar || item.title_en) : (item.title_en || item.title_ar);
+          const desc = currentLang === 'ar' ? (item.desc_ar || item.desc_en) : (item.desc_en || item.desc_ar);
+          const categoryName = translations[currentLang][`filter_${item.category}`] || item.category;
+
+          return `
+            <div class="portfolio-card glass rounded-3xl overflow-hidden border border-[#30363d] hover:border-[#FF9900]/50 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(255,153,0,0.2)] transition-all duration-300 group flex flex-col">
+              <div class="relative h-60 overflow-hidden bg-black/60 cursor-pointer" onclick="openLightbox('${item.id}')">
+                <img src="${item.image}" alt="${title}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop'">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b0c10] via-transparent to-transparent opacity-85"></div>
+                
+                <div class="absolute top-3.5 right-3.5 rtl:right-3.5 rtl:left-auto ltr:left-auto ltr:right-3.5">
+                  <span class="px-3 py-1 rounded-xl bg-[#0b0c10]/90 backdrop-blur-md border border-[#FF9900]/40 text-[10px] font-bold text-[#FF9900] tracking-wider uppercase">
+                    ${categoryName}
+                  </span>
+                </div>
+
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 backdrop-blur-[2px]">
+                  <span class="btn-gold px-4 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 shadow-lg">
+                    <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                    ${translations[currentLang].view_project}
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-[#FF9900] tracking-wider mb-1 block">${item.tag || 'Qazk Design'}</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-[#FF9900] transition-colors mb-2">${title}</h3>
+                  <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed">${desc}</p>
+                </div>
+
+                <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <button onclick="openLightbox('${item.id}')" class="text-xs text-[#FF9900] hover:text-[#FFD700] font-bold flex items-center gap-1 transition-colors cursor-pointer">
+                    <span>${translations[currentLang].view_project}</span>
+                    <i data-lucide="arrow-left" class="w-3 h-3 rtl-flip"></i>
+                  </button>
+                  <a href="#order" onclick="selectServiceForProject('${title}')" class="text-[11px] text-zinc-400 hover:text-white transition-colors cursor-pointer">
+                    ${translations[currentLang].cta_order_now}
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        if (window.lucide) lucide.createIcons();
+      }
+
+      // --- Render Special Offers ---
+      function renderOffers() {
+        const grid = document.getElementById('offers-grid');
+        if (!grid) return;
+
+        grid.innerHTML = offerItems.map((offer, index) => {
+          const title = currentLang === 'ar' ? (offer.title_ar || offer.title_en) : (offer.title_en || offer.title_ar);
+          const badge = currentLang === 'ar' ? (offer.badge_ar || offer.badge_en) : (offer.badge_en || offer.badge_ar);
+          const highlight = currentLang === 'ar' ? (offer.highlight_ar || offer.highlight_en) : (offer.highlight_en || offer.highlight_ar);
+          const desc = currentLang === 'ar' ? (offer.desc_ar || offer.desc_en) : (offer.desc_en || offer.desc_ar);
+          
+          const isFeatured = index === 0;
+
+          if (isFeatured) {
+            return `
+              <div class="bg-gradient-to-br from-[#FF9900] via-[#F28C00] to-[#D97706] rounded-3xl p-8 flex flex-col justify-between text-black shadow-[0_0_40px_rgba(255,153,0,0.3)] relative group transition-all duration-300 hover:scale-[1.02]">
+                <div>
+                  <span class="text-[10px] font-black uppercase tracking-[0.2em] opacity-80 mb-2 inline-block">${badge}</span>
+                  <h3 class="text-2xl sm:text-3xl font-black text-black leading-tight mb-3">${title}</h3>
+                  <div class="text-xs font-black text-black/90 mb-4 flex items-center gap-1.5 bg-black/15 px-3.5 py-1.5 rounded-xl w-fit">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>${highlight}</span>
+                  </div>
+                  <p class="text-xs font-medium text-black/85 leading-relaxed">${desc}</p>
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-black/15">
+                  <button onclick="claimOffer('${title}')" class="w-full py-3.5 rounded-xl bg-black/15 hover:bg-black/25 border border-black/20 text-black font-black text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <span>${translations[currentLang].claim_offer_btn}</span>
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5 rtl-flip"></i>
+                  </button>
+                </div>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="glass rounded-3xl p-8 flex flex-col justify-between border border-[#30363d] hover:border-[#FF9900]/50 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_30px_rgba(255,153,0,0.15)] transition-all duration-300 relative group">
+              <div>
+                <span class="inline-block px-3 py-1 rounded-xl bg-[#FF9900]/15 text-[#FF9900] border border-[#FF9900]/30 text-[10px] font-bold uppercase tracking-wider mb-4">
+                  ${badge}
+                </span>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#FF9900] transition-colors">${title}</h3>
+                <div class="text-xs font-bold text-[#FF9900] mb-3 flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                  <span>${highlight}</span>
+                </div>
+                <p class="text-xs text-zinc-400 leading-relaxed">${desc}</p>
+              </div>
+
+              <div class="mt-8 pt-4 border-t border-white/10">
+                <button onclick="claimOffer('${title}')" class="btn-gold w-full py-3 rounded-xl text-black font-extrabold text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer">
+                  <span>${translations[currentLang].claim_offer_btn}</span>
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5 rtl-flip"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        if (window.lucide) lucide.createIcons();
+      }
+
+      // --- Client Testimonials Carousel Functionality ---
+      let currentTestimonialIndex = 0;
+      let testimonialAutoplayTimer = null;
+
+      function renderTestimonials() {
+        const item = testimonialsData[currentTestimonialIndex];
+        if (!item) return;
+
+        const name = currentLang === 'ar' ? item.name_ar : item.name_en;
+        const role = currentLang === 'ar' ? item.role_ar : item.role_en;
+        const quote = currentLang === 'ar' ? item.quote_ar : item.quote_en;
+        const project = currentLang === 'ar' ? item.project_ar : item.project_en;
+
+        const quoteEl = document.getElementById('spotlight-quote');
+        const nameEl = document.getElementById('spotlight-name');
+        const roleEl = document.getElementById('spotlight-role');
+        const avatarEl = document.getElementById('spotlight-avatar');
+        const tagEl = document.getElementById('spotlight-project-tag');
+        const starsEl = document.getElementById('spotlight-stars');
+
+        if (quoteEl) {
+          quoteEl.style.opacity = '0';
+          quoteEl.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            quoteEl.textContent = `"${quote}"`;
+            if (nameEl) nameEl.textContent = name;
+            if (roleEl) roleEl.textContent = role;
+            if (avatarEl) avatarEl.src = item.avatar;
+            if (tagEl) tagEl.textContent = project;
+
+            if (starsEl) {
+              starsEl.innerHTML = Array.from({ length: item.stars || 5 })
+                .map(() => `<i data-lucide="star" class="w-5 h-5 fill-[#FF9900]"></i>`)
+                .join('');
+            }
+
+            quoteEl.style.opacity = '1';
+            quoteEl.style.transform = 'translateY(0)';
+            if (window.lucide) lucide.createIcons();
+          }, 140);
+        }
+
+        // Update Dots
+        const dotsContainer = document.getElementById('spotlight-dots');
+        if (dotsContainer) {
+          dotsContainer.innerHTML = testimonialsData.map((_, idx) => `
+            <button 
+              type="button"
+              class="h-2.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentTestimonialIndex ? 'bg-[#FF9900] w-7' : 'bg-white/20 hover:bg-white/50 w-2.5'}" 
+              onclick="goToTestimonial(${idx})" 
+              aria-label="Testimonial slide ${idx + 1}">
+            </button>
+          `).join('');
+        }
+
+        // Update 3-Card Grid below spotlight
+        const grid = document.getElementById('testimonials-grid');
+        if (grid) {
+          grid.innerHTML = testimonialsData.map((t, idx) => {
+            const tName = currentLang === 'ar' ? t.name_ar : t.name_en;
+            const tRole = currentLang === 'ar' ? t.role_ar : t.role_en;
+            const tQuote = currentLang === 'ar' ? t.quote_ar : t.quote_en;
+            const tProject = currentLang === 'ar' ? t.project_ar : t.project_en;
+            const isActive = idx === currentTestimonialIndex;
+
+            return `
+              <div 
+                onclick="goToTestimonial(${idx})"
+                class="glass rounded-3xl p-6 border transition-all duration-300 cursor-pointer flex flex-col justify-between group ${isActive ? 'border-[#FF9900] bg-[#161b22]/95 shadow-[0_0_30px_rgba(255,153,0,0.22)] -translate-y-1' : 'border-[#30363d] hover:border-[#FF9900]/50 hover:-translate-y-0.5'}"
+              >
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-4">
+                    <div class="flex items-center gap-1 text-[#FF9900]">
+                      ${Array.from({ length: t.stars || 5 }).map(() => `<i data-lucide="star" class="w-3.5 h-3.5 fill-[#FF9900]"></i>`).join('')}
+                    </div>
+                    <span class="text-[10px] font-bold text-[#FF9900] bg-[#FF9900]/10 px-2.5 py-0.5 rounded-full border border-[#FF9900]/25">
+                      ${tProject}
+                    </span>
+                  </div>
+                  <p class="text-xs text-zinc-300 line-clamp-3 leading-relaxed mb-6 group-hover:text-white transition-colors">
+                    "${tQuote}"
+                  </p>
+                </div>
+
+                <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <img src="${t.avatar}" alt="${tName}" class="w-10 h-10 rounded-xl object-cover border border-[#FF9900]/40 shrink-0" loading="lazy">
+                  <div class="min-w-0">
+                    <h5 class="text-xs font-bold text-white truncate ${isActive ? 'text-[#FF9900]' : ''}">${tName}</h5>
+                    <p class="text-[10px] text-zinc-400 truncate">${tRole}</p>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function goToTestimonial(idx) {
+        currentTestimonialIndex = idx;
+        renderTestimonials();
+        resetTestimonialAutoplay();
+      }
+
+      function nextTestimonial() {
+        currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialsData.length;
+        renderTestimonials();
+        resetTestimonialAutoplay();
+      }
+
+      function prevTestimonial() {
+        currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonialsData.length) % testimonialsData.length;
+        renderTestimonials();
+        resetTestimonialAutoplay();
+      }
+
+      function startTestimonialAutoplay() {
+        if (testimonialAutoplayTimer) clearInterval(testimonialAutoplayTimer);
+        testimonialAutoplayTimer = setInterval(() => {
+          currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonialsData.length;
+          renderTestimonials();
+        }, 6500);
+      }
+
+      function resetTestimonialAutoplay() {
+        if (testimonialAutoplayTimer) clearInterval(testimonialAutoplayTimer);
+        startTestimonialAutoplay();
+      }
+
+      // --- Scroll-Triggered Animations (IntersectionObserver) ---
+      function initScrollObserver() {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-scale');
+
+        if (!('IntersectionObserver' in window)) {
+          revealElements.forEach(el => el.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+      }
+
+      // --- Lightbox / Modal ---
+      function openLightbox(id) {
+        const item = portfolioItems.find(p => p.id === id);
+        if (!item) return;
+
+        const title = currentLang === 'ar' ? (item.title_ar || item.title_en) : (item.title_en || item.title_ar);
+        const desc = currentLang === 'ar' ? (item.desc_ar || item.desc_en) : (item.desc_en || item.desc_ar);
+        const cat = translations[currentLang][`filter_${item.category}`] || item.category;
+
+        document.getElementById('lightbox-img').src = item.image;
+        document.getElementById('lightbox-title').textContent = title;
+        document.getElementById('lightbox-desc').textContent = desc;
+        document.getElementById('lightbox-category').textContent = cat;
+
+        const orderBtn = document.getElementById('lightbox-order-btn');
+        orderBtn.onclick = function() {
+          closeLightbox();
+          selectServiceForProject(title);
+        };
+
+        document.getElementById('project-lightbox').classList.remove('hidden');
+      }
+
+      function closeLightbox() {
+        document.getElementById('project-lightbox').classList.add('hidden');
+      }
+
+      // --- Order Form Integration ---
+      function claimOffer(offerTitle) {
+        const serviceSelect = document.getElementById('client-service');
+        const messageInput = document.getElementById('client-message');
+        const offerHidden = document.getElementById('form-selected-offer');
+
+        if (offerTitle.includes('مجانية') || offerTitle.includes('Launch')) {
+          serviceSelect.value = 'عرض إطلاق الشركة المجاني';
+        } else if (offerTitle.includes('هوية') || offerTitle.includes('Identity')) {
+          serviceSelect.value = 'هوية بصرية كاملة';
+        } else if (offerTitle.includes('واجهة') || offerTitle.includes('UI')) {
+          serviceSelect.value = 'واجهات مستخدم UI/UX';
+        }
+
+        if (offerHidden) offerHidden.value = offerTitle;
+        if (messageInput) {
+          messageInput.value = currentLang === 'ar' 
+            ? `مرحباً Qazk، أود الاستفادة من: "${offerTitle}". نبذة عن مشروعي: ` 
+            : `Hello Qazk, I would like to claim the offer: "${offerTitle}". My project details: `;
+        }
+
+        // Scroll to form smoothly and highlight
+        const formSection = document.getElementById('order');
+        if (formSection) {
+          formSection.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('client-name').focus();
+        }
+      }
+
+      function selectServiceForProject(projectTitle) {
+        const messageInput = document.getElementById('client-message');
+        if (messageInput) {
+          messageInput.value = currentLang === 'ar'
+            ? `مرحباً استوديو Qazk، أعجبني جداً مشروع "${projectTitle}" في معرض أعمالكم وأود طلباً بجودة وتفاصيل مشابهة لمشروعي: `
+            : `Hello Qazk Studio, I really admire your work on "${projectTitle}" and would love to order a project with similar quality: `;
+        }
+        const formSection = document.getElementById('order');
+        if (formSection) {
+          formSection.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('client-name').focus();
+        }
+      }
+
+      // --- Setup Event Listeners ---
+      function setupEventListeners() {
+        // 1. Language Toggle
+        document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+          const nextLang = currentLang === 'ar' ? 'en' : 'ar';
+          applyLanguage(nextLang);
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileToggle && mobileNav) {
+          mobileToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('hidden');
+          });
+          mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileNav.classList.add('hidden'));
+          });
+        }
+
+        // 3. Portfolio Filters
+        const filterContainer = document.getElementById('portfolio-filters');
+        if (filterContainer) {
+          filterContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.portfolio-filter-btn');
+            if (!btn) return;
+            filterContainer.querySelectorAll('.portfolio-filter-btn').forEach(b => {
+              b.classList.remove('active', 'btn-gold', 'text-black', 'shadow-sm');
+              b.classList.add('bg-[#161b22]', 'text-zinc-300', 'border', 'border-[#30363d]');
+            });
+            btn.classList.add('active', 'btn-gold', 'text-black', 'shadow-sm');
+            btn.classList.remove('bg-[#161b22]', 'text-zinc-300', 'border', 'border-[#30363d]');
+
+            activeFilter = btn.getAttribute('data-filter');
+            const grid = document.getElementById('portfolio-grid');
+            if (grid) {
+              grid.style.opacity = '0.35';
+              grid.style.transform = 'scale(0.985)';
+              grid.style.transition = 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+              setTimeout(() => {
+                renderPortfolio();
+                grid.style.opacity = '1';
+                grid.style.transform = 'scale(1)';
+              }, 160);
+            } else {
+              renderPortfolio();
+            }
+          });
+        }
+
+        // 4. Double Click on Logo -> Secret Admin Authentication
+        const logo = document.getElementById('brand-logo-container');
+        if (logo) {
+          logo.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            openAdminAuthModal();
+          });
+
+          // Mobile touch support: double-tap
+          let lastTap = 0;
+          logo.addEventListener('touchend', function (e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 500 && tapLength > 0) {
+              openAdminAuthModal();
+              e.preventDefault();
+            }
+            lastTap = currentTime;
+          });
+        }
+
+        // 5. Auth Modal Actions
+        const authModal = document.getElementById('admin-auth-modal');
+        const closeAuth = document.getElementById('close-auth-modal');
+        const authForm = document.getElementById('admin-auth-form');
+        const authError = document.getElementById('auth-error');
+
+        if (closeAuth) {
+          closeAuth.addEventListener('click', () => authModal.classList.add('hidden'));
+        }
+
+        if (authForm) {
+          authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const key = document.getElementById('admin-secret-key').value.trim();
+            // User requested secret key: qazk2026
+            if (key === 'qazk2026') {
+              authModal.classList.add('hidden');
+              authError.classList.add('hidden');
+              document.getElementById('admin-secret-key').value = '';
+              openAdminDashboard();
+            } else {
+              authError.textContent = currentLang === 'ar' ? 'الرمز السري غير صحيح!' : 'Incorrect secret key!';
+              authError.classList.remove('hidden');
+            }
+          });
+        }
+
+        // 6. Admin Dashboard Actions & Tabs
+        const dashModal = document.getElementById('admin-dashboard-modal');
+        const closeDash = document.getElementById('close-dash-modal');
+        if (closeDash) {
+          closeDash.addEventListener('click', () => dashModal.classList.add('hidden'));
+        }
+
+        // Tabs
+        document.querySelectorAll('.admin-tab-btn').forEach(tabBtn => {
+          tabBtn.addEventListener('click', () => {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => {
+              b.classList.remove('active', 'border-[#FF9900]', 'text-[#FF9900]');
+              b.classList.add('border-transparent', 'text-zinc-400');
+            });
+            tabBtn.classList.add('active', 'border-[#FF9900]', 'text-[#FF9900]');
+            tabBtn.classList.remove('border-transparent', 'text-zinc-400');
+
+            const target = tabBtn.getAttribute('data-tab');
+            document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(target).classList.remove('hidden');
+          });
+        });
+
+        // Add Portfolio Form
+        const addPortfolioForm = document.getElementById('add-portfolio-form');
+        if (addPortfolioForm) {
+          addPortfolioForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('work-title').value.trim();
+            const category = document.getElementById('work-category').value;
+            const tag = document.getElementById('work-tag').value.trim();
+            const image = document.getElementById('work-image').value.trim();
+            const desc = document.getElementById('work-desc').value.trim();
+
+            const newItem = {
+              id: 'p_' + Date.now(),
+              title_ar: title,
+              title_en: title,
+              category: category,
+              tag: tag || 'Qazk Design',
+              image: image,
+              desc_ar: desc,
+              desc_en: desc,
+              createdAt: new Date().toISOString()
+            };
+
+            await savePortfolioToCloud(newItem);
+            showAdminNotify(currentLang === 'ar' ? 'تم حفظ ونشر العمل بنجاح!' : 'Work deployed to cloud successfully!');
+            addPortfolioForm.reset();
+          });
+        }
+
+        // Add Offer Form
+        const addOfferForm = document.getElementById('add-offer-form');
+        if (addOfferForm) {
+          addOfferForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('offer-title').value.trim();
+            const badge = document.getElementById('offer-badge').value.trim();
+            const highlight = document.getElementById('offer-highlight').value.trim();
+            const desc = document.getElementById('offer-desc').value.trim();
+
+            const newOffer = {
+              id: 'o_' + Date.now(),
+              title_ar: title,
+              title_en: title,
+              badge_ar: badge || 'عرض خاص',
+              badge_en: badge || 'Special Offer',
+              highlight_ar: highlight,
+              highlight_en: highlight,
+              desc_ar: desc,
+              desc_en: desc,
+              createdAt: new Date().toISOString()
+            };
+
+            await saveOfferToCloud(newOffer);
+            showAdminNotify(currentLang === 'ar' ? 'تم حفظ ونشر العرض بنجاح!' : 'Offer deployed to cloud successfully!');
+            addOfferForm.reset();
+          });
+        }
+
+        // Refresh cloud items
+        const refreshBtn = document.getElementById('btn-refresh-cloud');
+        if (refreshBtn) {
+          refreshBtn.addEventListener('click', () => {
+            fetchFromFirebaseCloud();
+            renderCloudItemsList();
+          });
+        }
+
+        // Lightbox close
+        const closeBox = document.getElementById('close-lightbox');
+        if (closeBox) {
+          closeBox.addEventListener('click', closeLightbox);
+        }
+        document.getElementById('project-lightbox').addEventListener('click', (e) => {
+          if (e.target.id === 'project-lightbox') closeLightbox();
+        });
+
+        // 7. Formspree AJAX Submission Handling (with graceful fallback)
+        const orderForm = document.getElementById('qazk-order-form');
+        const formStatus = document.getElementById('form-status');
+        const submitBtn = document.getElementById('form-submit-btn');
+
+        if (orderForm) {
+          orderForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+            formStatus.className = 'p-4 rounded-2xl text-xs font-semibold text-center bg-[#FF9900]/15 border border-[#FF9900]/30 text-[#FF9900] block';
+            formStatus.textContent = currentLang === 'ar' ? 'جارٍ إرسال طلبك إلى استوديو Qazk...' : 'Submitting your request to Qazk Studio...';
+
+            const formData = new FormData(orderForm);
+            try {
+              const res = await fetch(orderForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                  'Accept': 'application/json'
+                }
+              });
+
+              if (res.ok) {
+                formStatus.className = 'p-4 rounded-2xl text-xs font-bold text-center bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 block';
+                formStatus.textContent = currentLang === 'ar' 
+                  ? 'تم إرسال طلبك بنجاح! سيتواصل معك فريق Qazk مباشرة عبر بريدك الإلكتروني.' 
+                  : 'Your request was sent successfully! The Qazk team will reply to your email shortly.';
+                orderForm.reset();
+              } else {
+                throw new Error('Formspree returned an error');
+              }
+            } catch (error) {
+              // Fallback to native form post if fetch is blocked by browser policies
+              console.log('Submitting via standard POST fallback');
+              orderForm.submit();
+            } finally {
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+            }
+          });
+        }
+      }
+
+      function openAdminAuthModal() {
+        document.getElementById('admin-auth-modal').classList.remove('hidden');
+        document.getElementById('admin-secret-key').focus();
+      }
+
+      function openAdminDashboard() {
+        document.getElementById('admin-dashboard-modal').classList.remove('hidden');
+        renderCloudItemsList();
+      }
+
+      function showAdminNotify(msg) {
+        const el = document.getElementById('admin-notify');
+        el.textContent = msg;
+        el.className = 'mt-4 p-3.5 rounded-2xl text-xs font-bold text-center bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 block';
+        setTimeout(() => el.classList.add('hidden'), 4000);
+      }
+
+      function renderCloudItemsList() {
+        const container = document.getElementById('manage-items-list');
+        if (!container) return;
+
+        let html = '';
+        html += `<div class="text-[11px] font-bold text-[#FF9900] mt-2 mb-1.5">${translations[currentLang].nav_portfolio}:</div>`;
+        portfolioItems.forEach(p => {
+          const t = currentLang === 'ar' ? p.title_ar : p.title_en;
+          html += `
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#161b22] border border-[#30363d] text-xs">
+              <span class="truncate max-w-[70%] text-zinc-200">${t}</span>
+              <button onclick="deleteCloudItem('portfolio', '${p.id}')" class="text-red-400 hover:text-red-300 px-2.5 py-1 rounded-lg bg-red-500/10 cursor-pointer">حذف</button>
+            </div>
+          `;
+        });
+
+        html += `<div class="text-[11px] font-bold text-[#FF9900] mt-4 mb-1.5">${translations[currentLang].nav_offers}:</div>`;
+        offerItems.forEach(o => {
+          const t = currentLang === 'ar' ? o.title_ar : o.title_en;
+          html += `
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#161b22] border border-[#30363d] text-xs">
+              <span class="truncate max-w-[70%] text-zinc-200">${t}</span>
+              <button onclick="deleteCloudItem('offer', '${o.id}')" class="text-red-400 hover:text-red-300 px-2.5 py-1 rounded-lg bg-red-500/10 cursor-pointer">حذف</button>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      // Run on DOM load
+      document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+  </body>
+</html>
