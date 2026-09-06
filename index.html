@@ -319,38 +319,33 @@
     document.getElementById('lang-btn').onclick = () => applyLanguage(userLang === 'ar' ? 'en' : 'ar');
     applyLanguage(userLang);
 
-    // Optimized Secret Trigger (Supports Mobile Touch & Desktop Click)
-    let logoClicks = 0;
-    let logoTimer = null;
-    const brandLogoBtn = document.getElementById('brand-logo');
+        // 3 Clicks Secret Trigger on "Qazk" word (No Time Limit)
+    let qazkClickCount = 0;
+    const qazkWord = document.getElementById('qazk-word-trigger');
 
-    function handleSecretTrigger(e) {
-      logoClicks++;
-      clearTimeout(logoTimer);
+    if (qazkWord) {
+      qazkWord.addEventListener('click', function(e) {
+        e.stopPropagation(); // منع تداخل الضغط مع أي عنصر أب
+        qazkClickCount++;
 
-      if (logoClicks >= 2) {
-        logoClicks = 0;
-        setTimeout(() => {
-          const secretInput = prompt("أدخل كلمة المرور للوحة تحكم Qazk:");
-          if (secretInput === "qazk2026") {
-            const modal = document.getElementById('admin-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-          } else if (secretInput !== null) {
-            alert("كلمة المرور غير صحيحة!");
-          }
-        }, 100);
-      } else {
-        logoTimer = setTimeout(() => { logoClicks = 0; }, 1200);
-      }
+        // عند الوصول للضغطة الثالثة
+        if (qazkClickCount === 3) {
+          qazkClickCount = 0; // إعادة ضبط العداد
+          
+          setTimeout(() => {
+            const secretInput = prompt("أدخل كلمة المرور للوحة تحكم Qazk:");
+            if (secretInput === "qazk2026") {
+              const modal = document.getElementById('admin-modal');
+              modal.classList.remove('hidden');
+              modal.classList.add('flex');
+            } else if (secretInput !== null) {
+              alert("كلمة المرور غير صحيحة!");
+            }
+          }, 50);
+        }
+      });
     }
 
-    brandLogoBtn.addEventListener('click', handleSecretTrigger);
-
-    document.getElementById('admin-close-btn').onclick = () => {
-      document.getElementById('admin-modal').classList.add('hidden');
-      document.getElementById('admin-modal').classList.remove('flex');
-    };
 
     // File Upload & Base64 Image Processing
     let uploadedImageBase64 = '';
