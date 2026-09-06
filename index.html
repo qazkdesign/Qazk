@@ -1,6 +1,27 @@
 <!doctype html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
   <head>
+    <!-- Firebase SDK Setup for Qazk Studio -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // إعدادات مشروع Firebase الخاص بك بشركة Qazk
+  const firebaseConfig = {
+    apiKey: "AIzaSyAKaHzuPMKN-WA2CbN11lczhdF6MUTyPNc",
+    authDomain: "qazk-90a07.firebaseapp.com",
+    projectId: "qazk-90a07",
+    storageBucket: "qazk-90a07.firebasestorage.app",
+    messagingSenderId: "192910851796",
+    appId: "1:192910851796:web:97425c684937d65e658541",
+    measurementId: "G-MBBE8YDW7F"
+  };
+
+  // تهيئة التطبيق وقاعدة البيانات السحابية
+  const app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app);
+</script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qazk Studio | نُحول أفكارك إلى واقع بصري مبدع</title>
