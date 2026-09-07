@@ -188,11 +188,11 @@
       <h3 class="text-xl font-bold mb-4 text-white">شاركونا رأيكم في خدمات Qazk Studio:</h3>
       <form id="review-form" class="space-y-4">
         <div>
-          <label class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
+          <label class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
           <input type="text" id="client-name" required placeholder="مثال: أحمد - متجر الأناقة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
-          <label class="block text-sm text-gray-400 mb-1">الاسم / اسم الشركة:</label>
+          <label class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
           <input type="text" id="client-project" required placeholder="مثال: تصميم هوية بصرية كاملة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
@@ -271,63 +271,71 @@
     // 2. Realtime Global Data Fetch (Visible to ALL users & Incognito)
     function listenToGlobalData() {
 
-      // 1. استقبال رأي العميل وحفظه في Firebase
+      // 1. استقبال وإرسال رأي العميل إلى Firebase
 const reviewForm = document.getElementById("review-form");
 
 if (reviewForm) {
   reviewForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("client-name").value;
-    const project = document.getElementById("client-project").value;
-    const comment = document.getElementById("client-comment").value;
+    // جلب القيم من الخانات
+    const nameVal = document.getElementById("client-name").value;      // اسم العميل
+    const projectVal = document.getElementById("client-project").value;  // الخدمة
+    const commentVal = document.getElementById("client-comment").value;  // التعليق
 
-    // حفظ البيانات في مجموعة reviews
+    // إرسال البيانات بأسماء الحقول المحددة
     db.collection("reviews").add({
-      name: name,
-      project: project,
-      comment: comment,
+      name: nameVal,
+      project: projectVal,
+      comment: commentVal,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(() => {
-      alert("شكرًا لك! تم إرسال رأيك بنجاح وسيظهر فوراً في الموقع.");
-      reviewForm.reset(); // إعادة تنظيف الخانات
+      alert("تم إرسال رأيك بنجاح!");
+      reviewForm.reset();
     })
     .catch((error) => {
-      console.error("خطأ أثناء الإرسال:", error);
-      alert("حدث خطأ أثناء إرسال الرأي، يرجى المحاولة مرة أخرى.");
+      console.error("خطأ في الإرسال:", error);
+      alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
     });
   });
 }
 
-// 2. جلب وعرض التقييمات تلقائياً من Firebase
+// 2. جلب وعرض التقييمات في الصفحة بالترتيب الصحيح
 db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
   const reviewsContainer = document.getElementById("reviews-list");
+  if (!reviewsContainer) return;
+  
   reviewsContainer.innerHTML = "";
 
   if (snapshot.empty) {
-    reviewsContainer.innerHTML = `<p class="text-gray-400 text-center col-span-2">لا توجد تقييمات مضافة بعد. كن أول من يشارك رأيه!</p>`;
+    reviewsContainer.innerHTML = `<p class="text-gray-400 text-center col-span-2">لا توجد تقييمات مضافة بعد.</p>`;
     return;
   }
 
   snapshot.forEach((doc) => {
     const data = doc.data();
     reviewsContainer.innerHTML += `
-      <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-lg text-right">
+      <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-lg text-right mb-4">
         <div class="flex items-center mb-3">
+          <!-- الدائرة الصفراء تأخذ أول حرف من اسم العميل -->
           <div class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-lg ml-3">
-            ${data.name ? data.name.charAt(0) : 'Q'}
+            ${data.name ? data.name.charAt(0).toUpperCase() : 'C'}
           </div>
           <div>
-            <h4 class="font-bold text-lg text-white">${data.name}</h4>
-            <p class="text-xs text-yellow-400">${data.project}</p>
+            <!-- اسم العميل يظهر هنا فوق بخط عريض -->
+            <h4 class="font-bold text-lg text-white">${data.name || 'عميل'}</h4>
+            <!-- نوع الخدمة تظهر باللون الأصفر تحته -->
+            <p class="text-xs text-yellow-400">${data.project || 'خدمة تصميم'}</p>
           </div>
         </div>
+        <!-- التعليق -->
         <p class="text-gray-300 text-sm leading-relaxed">"${data.comment}"</p>
       </div>
     `;
   });
 });
+
 
       
       // Stream Portfolio
