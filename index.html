@@ -271,41 +271,50 @@
     // 2. Realtime Global Data Fetch (Visible to ALL users & Incognito)
     function listenToGlobalData() {
 
-      // 1. استقبال وإرسال رأي العميل إلى Firebase
+      // 1. كود إرسال التقييم
 const reviewForm = document.getElementById("review-form");
 
 if (reviewForm) {
   reviewForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // جلب القيم من الخانات
-    const nameVal = document.getElementById("client-name").value;      // اسم العميل
-    const projectVal = document.getElementById("client-project").value;  // الخدمة
-    const commentVal = document.getElementById("client-comment").value;  // التعليق
+    // جلب العناصر بالتأكيد
+    const nameInput = document.getElementById("client-name");
+    const projectInput = document.getElementById("client-project");
+    const commentInput = document.getElementById("client-comment");
 
-    // إرسال البيانات بأسماء الحقول المحددة
+    // أخذ القيم وتأكيد عدم وجود فراغات
+    const clientName = nameInput ? nameInput.value.trim() : "";
+    const clientProject = projectInput ? projectInput.value.trim() : "";
+    const clientComment = commentInput ? commentInput.value.trim() : "";
+
+    if (!clientName) {
+      alert("يرجى كتابة اسم العميل!");
+      return;
+    }
+
+    // إرسال البيانات إلى Firestore
     db.collection("reviews").add({
-      name: nameVal,
-      project: projectVal,
-      comment: commentVal,
+      name: clientName,
+      project: clientProject,
+      comment: clientComment,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(() => {
-      alert("تم إرسال رأيك بنجاح!");
+      alert("تم إرسال الرأي بنجاح!");
       reviewForm.reset();
     })
     .catch((error) => {
-      console.error("خطأ في الإرسال:", error);
-      alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+      console.error("خطأ أثناء الإرسال:", error);
     });
   });
 }
 
-// 2. جلب وعرض التقييمات في الصفحة بالترتيب الصحيح
+// 2. كود جلب وعرض التقييمات
 db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
   const reviewsContainer = document.getElementById("reviews-list");
   if (!reviewsContainer) return;
-  
+
   reviewsContainer.innerHTML = "";
 
   if (snapshot.empty) {
@@ -315,26 +324,32 @@ db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
 
   snapshot.forEach((doc) => {
     const data = doc.data();
+
+    // فحص وتحديد الاسم والخدمة المجلوبة
+    const displayName = data.name || data.clientName || "عميل";
+    const displayProject = data.project || data.service || "خدمة تصميم";
+    const displayComment = data.comment || "";
+
     reviewsContainer.innerHTML += `
       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-lg text-right mb-4">
         <div class="flex items-center mb-3">
-          <!-- الدائرة الصفراء تأخذ أول حرف من اسم العميل -->
+          <!-- الحرف الأول من اسم العميل -->
           <div class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-lg ml-3">
-            ${data.name ? data.name.charAt(0).toUpperCase() : 'C'}
+            ${displayName.charAt(0).toUpperCase()}
           </div>
           <div>
-            <!-- اسم العميل يظهر هنا فوق بخط عريض -->
-            <h4 class="font-bold text-lg text-white">${data.name || 'عميل'}</h4>
-            <!-- نوع الخدمة تظهر باللون الأصفر تحته -->
-            <p class="text-xs text-yellow-400">${data.project || 'خدمة تصميم'}</p>
+            <!-- اسم العميل يظهر هنا -->
+            <h4 class="font-bold text-lg text-white">${displayName}</h4>
+            <!-- نوع الخدمة تحته -->
+            <p class="text-xs text-yellow-400">${displayProject}</p>
           </div>
         </div>
-        <!-- التعليق -->
-        <p class="text-gray-300 text-sm leading-relaxed">"${data.comment}"</p>
+        <p class="text-gray-300 text-sm leading-relaxed">"${displayComment}"</p>
       </div>
     `;
   });
 });
+
 
 
       
