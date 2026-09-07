@@ -178,6 +178,39 @@
     </div>
   </section>
 
+  <!-- قسم آراء العملاء ونموذج كتابة الرأي -->
+<section class="py-16 bg-gray-900 text-white text-right" dir="rtl">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-8 text-yellow-500">آراء العملاء</h2>
+
+    <!-- نموذج لكتابة العميل رأيه -->
+    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 mb-12 shadow-lg">
+      <h3 class="text-xl font-bold mb-4 text-white">شاركونا رأيكم في خدمات Qazk Studio:</h3>
+      <form id="review-form" class="space-y-4">
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
+          <input type="text" id="client-name" required placeholder="مثال: أحمد - متجر الأناقة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+        </div>
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
+          <input type="text" id="client-project" required placeholder="مثال: تصميم هوية بصرية كاملة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+        </div>
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">رأيك وتجربتك معنا:</label>
+          <textarea id="client-comment" required rows="3" placeholder="اكتب رأيك هنا..." class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-xl transition">إرسال الرأي</button>
+      </form>
+    </div>
+
+    <!-- مكان عرض التقييمات المكتوبة -->
+    <div id="reviews-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <p class="text-gray-400 text-center col-span-2">جاري تحميل آراء العملاء...</p>
+    </div>
+  </div>
+</section>
+  
+
   <!-- Admin Modal -->
   <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-dark-card border border-brand-500/50 p-6 rounded-3xl max-w-xl w-full relative amber-glow">
@@ -237,6 +270,66 @@
 
     // 2. Realtime Global Data Fetch (Visible to ALL users & Incognito)
     function listenToGlobalData() {
+
+      // 1. استقبال رأي العميل وحفظه في Firebase
+const reviewForm = document.getElementById("review-form");
+
+if (reviewForm) {
+  reviewForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("client-name").value;
+    const project = document.getElementById("client-project").value;
+    const comment = document.getElementById("client-comment").value;
+
+    // حفظ البيانات في مجموعة reviews
+    db.collection("reviews").add({
+      name: name,
+      project: project,
+      comment: comment,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      alert("شكرًا لك! تم إرسال رأيك بنجاح وسيظهر فوراً في الموقع.");
+      reviewForm.reset(); // إعادة تنظيف الخانات
+    })
+    .catch((error) => {
+      console.error("خطأ أثناء الإرسال:", error);
+      alert("حدث خطأ أثناء إرسال الرأي، يرجى المحاولة مرة أخرى.");
+    });
+  });
+}
+
+// 2. جلب وعرض التقييمات تلقائياً من Firebase
+db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+  const reviewsContainer = document.getElementById("reviews-list");
+  reviewsContainer.innerHTML = "";
+
+  if (snapshot.empty) {
+    reviewsContainer.innerHTML = `<p class="text-gray-400 text-center col-span-2">لا توجد تقييمات مضافة بعد. كن أول من يشارك رأيه!</p>`;
+    return;
+  }
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    reviewsContainer.innerHTML += `
+      <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-lg text-right">
+        <div class="flex items-center mb-3">
+          <div class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-lg ml-3">
+            ${data.name ? data.name.charAt(0) : 'Q'}
+          </div>
+          <div>
+            <h4 class="font-bold text-lg text-white">${data.name}</h4>
+            <p class="text-xs text-yellow-400">${data.project}</p>
+          </div>
+        </div>
+        <p class="text-gray-300 text-sm leading-relaxed">"${data.comment}"</p>
+      </div>
+    `;
+  });
+});
+
+      
       // Stream Portfolio
       db.collection("portfolio").onSnapshot((snapshot) => {
         const pContainer = document.getElementById('portfolio-container');
