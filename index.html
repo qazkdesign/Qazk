@@ -183,32 +183,33 @@
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8 text-yellow-500">آراء العملاء</h2>
 
-    <!-- نموذج لكتابة العميل رأيه -->
+    <!-- نموذج كتابة الرأي -->
     <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 mb-12 shadow-lg">
       <h3 class="text-xl font-bold mb-4 text-white">شاركونا رأيكم في خدمات Qazk Studio:</h3>
       <form id="review-form" class="space-y-4">
         <div>
-          <label class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
-          <input type="text" id="client-name" required placeholder="مثال: أحمد - متجر الأناقة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+          <label for="client-name" class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
+          <input type="text" id="client-name" name="clientName" required placeholder="مثال: عبد الرحمن" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
-          <label class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
-          <input type="text" id="client-project" required placeholder="مثال: تصميم هوية بصرية كاملة" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+          <label for="client-project" class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
+          <input type="text" id="client-project" name="clientProject" required placeholder="مثال: Visual Identity / Logo" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
-          <label class="block text-sm text-gray-400 mb-1">رأيك وتجربتك معنا:</label>
-          <textarea id="client-comment" required rows="3" placeholder="اكتب رأيك هنا..." class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
+          <label for="client-comment" class="block text-sm text-gray-400 mb-1">رأيك وتجربتك معنا:</label>
+          <textarea id="client-comment" name="clientComment" required rows="3" placeholder="اكتب رأيك هنا..." class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
         </div>
         <button type="submit" class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-xl transition">إرسال الرأي</button>
       </form>
     </div>
 
-    <!-- مكان عرض التقييمات المكتوبة -->
+    <!-- قائمة عرض التقييمات -->
     <div id="reviews-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <p class="text-gray-400 text-center col-span-2">جاري تحميل آراء العملاء...</p>
     </div>
   </div>
 </section>
+
   
 
   <!-- Admin Modal -->
@@ -271,46 +272,46 @@
     // 2. Realtime Global Data Fetch (Visible to ALL users & Incognito)
     function listenToGlobalData() {
 
-      // 1. كود إرسال التقييم
+      // 1. كود إرسال التقييم إلى Firebase
 const reviewForm = document.getElementById("review-form");
 
 if (reviewForm) {
   reviewForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // جلب العناصر بالتأكيد
+    // جلب العناصر بـ ID أو عبر عناصر Form مباشرة
     const nameInput = document.getElementById("client-name");
     const projectInput = document.getElementById("client-project");
     const commentInput = document.getElementById("client-comment");
 
-    // أخذ القيم وتأكيد عدم وجود فراغات
-    const clientName = nameInput ? nameInput.value.trim() : "";
-    const clientProject = projectInput ? projectInput.value.trim() : "";
-    const clientComment = commentInput ? commentInput.value.trim() : "";
+    const nameVal = nameInput ? nameInput.value.trim() : "";
+    const projectVal = projectInput ? projectInput.value.trim() : "";
+    const commentVal = commentInput ? commentInput.value.trim() : "";
 
-    if (!clientName) {
-      alert("يرجى كتابة اسم العميل!");
+    if (!nameVal) {
+      alert("يرجى كتابة الاسم في الخانة الأولى!");
       return;
     }
 
-    // إرسال البيانات إلى Firestore
+    // حفظ البيانات في Firestore
     db.collection("reviews").add({
-      name: clientName,
-      project: clientProject,
-      comment: clientComment,
+      name: nameVal,
+      project: projectVal,
+      comment: commentVal,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(() => {
-      alert("تم إرسال الرأي بنجاح!");
+      alert("تم إرسال رأيك بنجاح!");
       reviewForm.reset();
     })
     .catch((error) => {
       console.error("خطأ أثناء الإرسال:", error);
+      alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
     });
   });
 }
 
-// 2. كود جلب وعرض التقييمات
+// 2. كود جلب وعرض التقييمات تلقائياً
 db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
   const reviewsContainer = document.getElementById("reviews-list");
   if (!reviewsContainer) return;
@@ -325,30 +326,31 @@ db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
   snapshot.forEach((doc) => {
     const data = doc.data();
 
-    // فحص وتحديد الاسم والخدمة المجلوبة
-    const displayName = data.name || data.clientName || "عميل";
-    const displayProject = data.project || data.service || "خدمة تصميم";
-    const displayComment = data.comment || "";
+    const nameText = data.name || "عميل";
+    const projectText = data.project || "خدمة تصميم";
+    const commentText = data.comment || "";
 
     reviewsContainer.innerHTML += `
       <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-lg text-right mb-4">
         <div class="flex items-center mb-3">
-          <!-- الحرف الأول من اسم العميل -->
+          <!-- الدائرة تأخذ أول حرف من اسم العميل -->
           <div class="w-10 h-10 rounded-full bg-yellow-500 text-black font-bold flex items-center justify-center text-lg ml-3">
-            ${displayName.charAt(0).toUpperCase()}
+            ${nameText.charAt(0).toUpperCase()}
           </div>
           <div>
-            <!-- اسم العميل يظهر هنا -->
-            <h4 class="font-bold text-lg text-white">${displayName}</h4>
-            <!-- نوع الخدمة تحته -->
-            <p class="text-xs text-yellow-400">${displayProject}</p>
+            <!-- اسم العميل يظهر هنا فوق بخط عريض -->
+            <h4 class="font-bold text-lg text-white">${nameText}</h4>
+            <!-- نوع الخدمة يظهر باللون الأصفر تحته -->
+            <p class="text-xs text-yellow-400">${projectText}</p>
           </div>
         </div>
-        <p class="text-gray-300 text-sm leading-relaxed">"${displayComment}"</p>
+        <!-- التعليق -->
+        <p class="text-gray-300 text-sm leading-relaxed">"${commentText}"</p>
       </div>
     `;
   });
 });
+
 
 
 
