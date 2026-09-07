@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+هل<!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -272,28 +272,30 @@
     // 2. Realtime Global Data Fetch (Visible to ALL users & Incognito)
     function listenToGlobalData() {
 
-      // 1. كود إرسال التقييم إلى Firebase
+      // 1. كود إرسال التقييم المطور القاطع
 const reviewForm = document.getElementById("review-form");
 
 if (reviewForm) {
-  reviewForm.addEventListener("submit", (e) => {
+  reviewForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // جلب العناصر بـ ID أو عبر عناصر Form مباشرة
-    const nameInput = document.getElementById("client-name");
-    const projectInput = document.getElementById("client-project");
-    const commentInput = document.getElementById("client-comment");
+    // جلب عناصر الإدخال من داخل هذا النموذج المحدد حصراً
+    const nameInput = this.querySelector("#client-name") || this.querySelector("input[name='clientName']") || this.querySelectorAll("input")[0];
+    const projectInput = this.querySelector("#client-project") || this.querySelector("input[name='clientProject']") || this.querySelectorAll("input")[1];
+    const commentInput = this.querySelector("#client-comment") || this.querySelector("textarea");
 
+    // قراءة القيم وتجريدها من الفراغات
     const nameVal = nameInput ? nameInput.value.trim() : "";
     const projectVal = projectInput ? projectInput.value.trim() : "";
     const commentVal = commentInput ? commentInput.value.trim() : "";
 
+    // التأكد من وجود قيمة في الاسم
     if (!nameVal) {
       alert("يرجى كتابة الاسم في الخانة الأولى!");
       return;
     }
 
-    // حفظ البيانات في Firestore
+    // إرسال البيانات إلى Firebase
     db.collection("reviews").add({
       name: nameVal,
       project: projectVal,
@@ -302,11 +304,11 @@ if (reviewForm) {
     })
     .then(() => {
       alert("تم إرسال رأيك بنجاح!");
-      reviewForm.reset();
+      this.reset(); // إعادة ضبط الخانات
     })
     .catch((error) => {
       console.error("خطأ أثناء الإرسال:", error);
-      alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+      alert("حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.");
     });
   });
 }
@@ -338,7 +340,7 @@ db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
             ${nameText.charAt(0).toUpperCase()}
           </div>
           <div>
-            <!-- اسم العميل يظهر هنا فوق بخط عريض -->
+            <!-- اسم العميل يظهر فوق بخط عريض -->
             <h4 class="font-bold text-lg text-white">${nameText}</h4>
             <!-- نوع الخدمة يظهر باللون الأصفر تحته -->
             <p class="text-xs text-yellow-400">${projectText}</p>
