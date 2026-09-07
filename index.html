@@ -178,7 +178,7 @@
     </div>
   </section>
 
-  <!-- قسم آراء العملاء ونموذج كتابة الرأي -->
+  <!-- قسم آراء العملاء -->
 <section class="py-16 bg-gray-900 text-white text-right" dir="rtl">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-8 text-yellow-500">آراء العملاء</h2>
@@ -188,16 +188,16 @@
       <h3 class="text-xl font-bold mb-4 text-white">شاركونا رأيكم في خدمات Qazk Studio:</h3>
       <form id="review-form" class="space-y-4">
         <div>
-          <label for="client-name" class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
-          <input type="text" id="client-name" name="clientName" required placeholder="مثال: عبد الرحمن" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+          <label class="block text-sm text-gray-400 mb-1">الاسم / اسم المتجر:</label>
+          <input type="text" id="rev-name" required placeholder="مثال: عبد الرحمن" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
-          <label for="client-project" class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
-          <input type="text" id="client-project" name="clientProject" required placeholder="مثال: Visual Identity / Logo" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
+          <label class="block text-sm text-gray-400 mb-1">نوع الخدمة المقدمة:</label>
+          <input type="text" id="rev-project" required placeholder="مثال: Visual Identity" class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500">
         </div>
         <div>
-          <label for="client-comment" class="block text-sm text-gray-400 mb-1">رأيك وتجربتك معنا:</label>
-          <textarea id="client-comment" name="clientComment" required rows="3" placeholder="اكتب رأيك هنا..." class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
+          <label class="block text-sm text-gray-400 mb-1">رأيك وتجربتك معنا:</label>
+          <textarea id="rev-comment" required rows="3" placeholder="اكتب رأيك هنا..." class="w-full p-3 rounded-xl bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-yellow-500"></textarea>
         </div>
         <button type="submit" class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-xl transition">إرسال الرأي</button>
       </form>
@@ -210,7 +210,6 @@
   </div>
 </section>
 
-  
 
   <!-- Admin Modal -->
   <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
@@ -295,16 +294,33 @@ if (reviewForm) {
       return;
     }
 
-    // إرسال البيانات إلى Firebase
+    // 1. إرسال التقييم مع الفصل الكامل عن نموذج الطلبات
+const reviewForm = document.getElementById("review-form");
+
+if (reviewForm) {
+  reviewForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // جلب البيانات حصرياً من معرفات التقييم المعزولة
+    const clientName = document.getElementById("rev-name").value.trim();
+    const clientProject = document.getElementById("rev-project").value.trim();
+    const clientComment = document.getElementById("rev-comment").value.trim();
+
+    if (!clientName) {
+      alert("يرجى كتابة الاسم في الخانة الأولى!");
+      return;
+    }
+
+    // حفظ التقييم في مجموعة reviews
     db.collection("reviews").add({
-      name: nameVal,
-      project: projectVal,
-      comment: commentVal,
+      name: clientName,
+      project: clientProject,
+      comment: clientComment,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(() => {
       alert("تم إرسال رأيك بنجاح!");
-      this.reset(); // إعادة ضبط الخانات
+      reviewForm.reset();
     })
     .catch((error) => {
       console.error("خطأ أثناء الإرسال:", error);
@@ -313,7 +329,7 @@ if (reviewForm) {
   });
 }
 
-// 2. كود جلب وعرض التقييمات تلقائياً
+// 2. عرض التقييمات مع إظهار الاسم بالخط العريض فوق والخدمة تحته
 db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
   const reviewsContainer = document.getElementById("reviews-list");
   if (!reviewsContainer) return;
@@ -340,7 +356,7 @@ db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
             ${nameText.charAt(0).toUpperCase()}
           </div>
           <div>
-            <!-- اسم العميل يظهر فوق بخط عريض -->
+            <!-- اسم العميل يظهر هنا فوق بخط عريض -->
             <h4 class="font-bold text-lg text-white">${nameText}</h4>
             <!-- نوع الخدمة يظهر باللون الأصفر تحته -->
             <p class="text-xs text-yellow-400">${projectText}</p>
@@ -352,7 +368,6 @@ db.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
     `;
   });
 });
-
 
 
 
